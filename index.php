@@ -25,7 +25,7 @@ if (!empty($request)) {
         $request = substr($request, strlen($requestHome));
         $requestParts = explode('/', parse_url($request, PHP_URL_PATH));
 
-        var_dump($requestParts);
+        //var_dump($requestParts);
         if (count($requestParts) > 1) {
             $className = ucfirst($requestParts[0]) . 'Controller';
             if (class_exists($className)) {
@@ -36,7 +36,7 @@ if (!empty($request)) {
 
             if (isset($requestParts[2])) {
                 $params = array_splice($requestParts, 2);
-                var_dump($params);
+                //var_dump($params);
             }
         } else {
             include_once 'controllers/MainController.php';
@@ -48,7 +48,7 @@ $class = '\controllers\\' . ucfirst($controller) . 'Controller';
 $instance = new $class;
 
 if (method_exists($instance, $action)) {
-    call_user_func_array(array($controller_instance, $method), array($params));
+    call_user_func_array(array($instance, $action), array($params));
 }
 
 function __autoload($className) {

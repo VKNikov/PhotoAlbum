@@ -1,5 +1,3 @@
-<div></div>
-
 <?php
 /**
  * Created by PhpStorm.
@@ -9,5 +7,7 @@
  */
 
 include_once ROOT_DIR . 'views/elements/header.php';
-include_once ROOT_DIR . $template;
+include_once $this->template;
 include_once ROOT_DIR . 'views/elements/footer.php';
+
+?>

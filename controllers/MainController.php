@@ -10,8 +10,18 @@ namespace Controllers;
 
 
 class MainController {
-    public function __construct() {
+    protected $viewLocation;
+    protected $layout;
+
+    public function __construct($viewLocation = '/views/main/' ) {
+        $this->viewLocation = $viewLocation;
+        $this->layout = ROOT_DIR . '/views/elements/default.php';
         echo "Main controller opened.";
     }
 
+    public function index() {
+        $template_name = ROOT_DIR . $this->viewLocation . 'index.php';
+
+        include_once $this->layout;
+    }
 }

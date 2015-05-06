@@ -6,10 +6,8 @@
  * Time: 22:09
  */
 
-namespace models;
+namespace Controllers;
 
-
-use Controllers\MainController;
 
 class AlbumController extends MainController{
 
@@ -17,4 +15,9 @@ class AlbumController extends MainController{
         parent::__construct('/views/albums/');
     }
 
+    public function create() {
+        $this->template = ROOT_DIR . '/views/albums/create.php';
+
+        include_once $this->layout;
+    }
 }

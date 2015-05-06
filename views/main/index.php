@@ -1,5 +1,5 @@
 <div>
-    <h1>This is the main controller page.</h1>
+    <h1>This is the main page for unregistered users.</h1>
 </div>
 
 <?php

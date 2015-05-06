@@ -6,10 +6,8 @@
  * Time: 22:10
  */
 
-namespace models;
+namespace Controllers;
 
-
-use Controllers\MainController;
 
 class PictureController extends MainController{
 
@@ -18,6 +16,14 @@ class PictureController extends MainController{
     }
 
     public function index() {
+        $this->template = ROOT_DIR . '/views/pictures/index.php';
 
+        include_once $this->layout;
+    }
+
+    public function create() {
+        $this->template = ROOT_DIR . '/views/pictures/create.php';
+
+        include_once $this->layout;
     }
 }

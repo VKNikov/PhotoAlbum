@@ -20,7 +20,6 @@ class MainController {
     }
 
     public function index() {
-        //$template = ROOT_DIR . $this->viewLocation . 'index.php';
         $this->template = ROOT_DIR . '/views/main/index.php';
 
         include_once $this->layout;

@@ -11,4 +11,9 @@ namespace Controllers;
 
 class HomeController extends MainController {
 
+    public function __construct() {
+        parent::__construct('/views/home/');
+    }
+
+
 }

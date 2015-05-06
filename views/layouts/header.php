@@ -9,5 +9,12 @@
 </head>
 <body>
 <header>
-    <h1>Welcome to my Photo Album</h1>
+    <h1>Hi, ... !, Welcome to Vassil Nikov's Photo Album</h1>
+    <ul class="navbar">
+        <li>Home</li>
+        <li>Create New Album</li>
+        <li>Add New Picture</li>
+        <li>Edit Profile</li>
+        <li>Logout</li>
+    </ul>
 </header>

@@ -16,7 +16,7 @@ class MainController {
 
     public function __construct($viewLocation = '/views/main/' ) {
         $this->viewLocation = $viewLocation;
-        $this->layout = ROOT_DIR . '/views/elements/default.php';
+        $this->layout = ROOT_DIR . '/views/layouts/default.php';
     }
 
     public function index() {

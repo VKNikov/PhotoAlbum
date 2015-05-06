@@ -6,8 +6,8 @@
  * Time: 14:47
  */
 
-include_once ROOT_DIR . 'views/elements/header.php';
+include_once ROOT_DIR . 'views/layouts/header.php';
 include_once $this->template;
-include_once ROOT_DIR . 'views/elements/footer.php';
+include_once ROOT_DIR . 'views/layouts/footer.php';
 
 ?>

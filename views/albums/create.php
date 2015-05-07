@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="AlbumName">Enter Album's Name</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="InputName" id="AlbumName" placeholder="Album Name" required>
+                        <input type="text" class="form-control" name="albumName" id="albumName" placeholder="Album Name" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label for="InputMessage">Enter Description</label>
                     <div class="input-group">
-                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"></textarea>
+                        <textarea name="description" id="description" class="form-control" rows="5"></textarea>
                         <span class="input-group-addon"></span>
                     </div>
                 </div>

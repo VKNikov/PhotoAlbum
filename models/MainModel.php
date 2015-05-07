@@ -25,6 +25,7 @@ class MainModel {
 
         $dbEntity = \Libs\Database::getInstance();
         $this->db = $dbEntity->getDb();
+        $this->db->set_charset('utf8');
 
     }
 
@@ -34,6 +35,10 @@ class MainModel {
 
     public function getByName($name) {
         return $this->find(array('where' => "name = '" . $name) . "'");
+    }
+
+    public function getAll() {
+        return $this->find(array('limit' => ''));
     }
 
     public function update($element) {

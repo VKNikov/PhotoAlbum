@@ -15,28 +15,28 @@
                 <div class="form-group">
                     <label for="InputName">Enter Name</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Name" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="InputEmail">Enter Email</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="InputPass">Enter Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="InputPass" name="InputPass" placeholder="Password" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="ConfirmPass">Confirm Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="ConfirmPass" name="ConfirmPass" placeholder="Password" required>
+                        <input type="password" class="form-control" id="confirmPass" name="confirmPass" placeholder="Password" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
@@ -63,16 +63,16 @@
         $("#submit").click(function(){
             $(".error").hide();
             var hasError = false;
-            var passwordVal = $("#InputPass").val();
-            var checkVal = $("#ConfirmPass").val();
+            var passwordVal = $("#password").val();
+            var checkVal = $("#confirmPass").val();
             if (passwordVal == '') {
-                $("#InputPass").after('<span class="error">Please enter a password.</span>');
+                $("#password").after('<span class="error">Please enter a password.</span>');
                 hasError = true;
             } else if (checkVal == '') {
-                $("#ConfirmPass").after('<span class="error">Please re-enter your password.</span>');
+                $("#confirmPass").after('<span class="error">Please re-enter your password.</span>');
                 hasError = true;
             } else if (passwordVal != checkVal ) {
-                $("#ConfirmPass").after('<span class="error">Passwords do not match.</span>');
+                $("#confirmPass").after('<span class="error">Passwords do not match.</span>');
                 hasError = true;
             }
             if(hasError == true) {return false;}

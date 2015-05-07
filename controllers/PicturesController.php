@@ -10,6 +10,7 @@
 
 
 class PicturesController extends MainController{
+    protected $picturesModel;
 
     public function __construct() {
         parent::__construct(get_class(), '/views/pictures/');
@@ -19,6 +20,8 @@ class PicturesController extends MainController{
         $this->template = ROOT_DIR . '/views/pictures/index.php';
 
         include_once $this->layout;
+
+        $this->picturesModel = new PicturesModel();
     }
 
     public function all() {

@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label for="InputName">Username</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Name" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label for="InputPass">Enter Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="InputPass" name="InputPass" placeholder="Password" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>

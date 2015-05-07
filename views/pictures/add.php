@@ -32,7 +32,7 @@
 
                     <label for="InputPass">Picture Name</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="PictureName" id="InputName" placeholder="Enter Name" required>
+                        <input type="text" class="form-control" name="pictureName" id="pictureName" placeholder="Enter Name" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="InputPass">Choose File</label>
                     <div class="input-group">
-                        <input type="file" class="form-control" id="file" name="PictureFile" required>
+                        <input type="file" class="form-control" id="file" name="pictureFile" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>

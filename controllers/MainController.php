@@ -13,10 +13,14 @@ class MainController {
     protected $viewLocation;
     protected $layout;
     protected $template;
+    protected $isPosted = false;
 
     public function __construct($className = 'MainController', $viewLocation = '/views/main/' ) {
         $this->viewLocation = $viewLocation;
         $this->layout = ROOT_DIR . '/views/layouts/default.php';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->isPosted = true;
+        }
     }
 
     public function index() {

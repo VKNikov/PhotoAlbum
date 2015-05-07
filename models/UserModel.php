@@ -10,7 +10,7 @@
 
 
 class UserModel extends MainModel {
-    
+
     public function __construct($args = array()) {
         parent::__construct(array('entity' => 'users'));
     }

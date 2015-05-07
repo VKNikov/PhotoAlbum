@@ -10,6 +10,7 @@
 
 
 class UserController extends MainController{
+    protected $userModel;
 
     public function __construct() {
         parent::__construct(get_class(), '/views/user/');

@@ -10,6 +10,7 @@
 
 
 class AlbumsController extends MainController{
+    protected $albumsModel;
 
     public function __construct() {
         parent::__construct(get_class(),'/views/albums/');
@@ -19,6 +20,8 @@ class AlbumsController extends MainController{
         $this->template = ROOT_DIR . '/views/albums/index.php';
 
         include_once $this->layout;
+
+        $this->albumsModel = new AlbumsModel();
     }
 
     public function all() {
@@ -28,6 +31,11 @@ class AlbumsController extends MainController{
     }
 
     public function create() {
+        if ($this->isPosted) {
+            $name = $_POST['AlbumName'];
+            $description = $_POST[''];
+        }
+
         $this->template = ROOT_DIR . '/views/albums/create.php';
 
         include_once $this->layout;

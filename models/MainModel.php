@@ -28,6 +28,35 @@ class MainModel {
 
     }
 
+    public function get($id) {
+        return $this->find(array('where' => 'id = ' . $id));
+    }
+
+    public function getByName($name) {
+        return $this->find(array('where' => "name = '" . $name) . "'");
+    }
+
+    public function update($element) {
+
+    }
+
+    public function add($element) {
+        $keys = array_keys($element);
+        $values = array();
+
+        foreach ($element as $keys => $value) {
+            $values[] = "'" . $this->db->real_escape_string($value) . "'";
+        }
+
+        $keys = implode(',', $keys);
+        $values = implode(',', $values);
+
+        $query = "INSERT INTO {$this->entity}($keys) VALUES($values)";
+        $this->db->query($query);
+
+        return $this->db->affected_rows;
+    }
+
     public function find($args = array()) {
         $default = array(
             'limit' => $this->limit,

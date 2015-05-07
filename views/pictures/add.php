@@ -19,7 +19,7 @@
                     <label for="InputName">Album Name</label>
                     <div class="form-group">
                         <div class="input-group">
-                            <select name="Album" id="Album">
+                            <select name="albumName" id="albumName">
                                 <?php
                                 foreach ($album as $a) {
                                     echo '<option value='.$a['id'].'>'.$a['name'].'</option>';
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="InputPass">Public?</label>
                     <div class="input-group">
-                        <input type="checkbox" class="form-control" name="is_public" value="1">
+                        <input type="checkbox" class="form-control" name="isPublic" value="1">
                         <span class="input-group-addon"></span>
                     </div>
                 </div>

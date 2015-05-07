@@ -14,14 +14,13 @@ class AlbumsController extends MainController{
 
     public function __construct() {
         parent::__construct(get_class(),'/views/albums/');
+        $this->albumsModel = new AlbumsModel();
     }
 
     public function index() {
         $this->template = ROOT_DIR . '/views/albums/index.php';
 
         include_once $this->layout;
-
-        $this->albumsModel = new AlbumsModel();
     }
 
     public function all() {
@@ -32,8 +31,15 @@ class AlbumsController extends MainController{
 
     public function create() {
         if ($this->isPosted) {
-            $name = $_POST['AlbumName'];
-            $description = $_POST[''];
+            $name = $_POST['albumName'];
+            $description = $_POST['description'];
+            if ($this->albumsModel->add(array('name' => $name, 'description' => $description))) {
+                //$this->addInfoMessage("Author created.");
+                //$this->redirect("authors");
+            } else {
+                //$this->addErrorMessage("Cannot create author.");
+                exit('Error: Sorry, could not create this album');
+            }
         }
 
         $this->template = ROOT_DIR . '/views/albums/create.php';

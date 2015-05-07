@@ -13,15 +13,19 @@ class MainModel {
     protected $entity;
     protected $limit;
     protected $db;
+    protected $args;
 
     public function __construct($args = array()) {
-        $args = array('limit' => 10 );
-        if (!isset($args['entity'])) {
-            die('Entity model not defined.');
+        $this->entity = $args['entity'];
+        if (!isset($args['limit'])) {
+           $this->limit = 10;
+        } else {
+            $this->limit = $args['limit'];
         }
 
-        $this->entity = $args['entity'];
-        $this->limit = $args['limit'];
+        if (!isset($this->entity)) {
+            die('Entity model not defined.');
+        }
 
         $dbEntity = \Libs\Database::getInstance();
         $this->db = $dbEntity->getDb();

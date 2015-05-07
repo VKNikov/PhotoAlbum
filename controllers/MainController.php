@@ -28,4 +28,8 @@ class MainController {
 
         include_once $this->layout;
     }
+
+    protected function isLoggedIn() {
+        return isset($_SESSION['username']);
+    }
 }

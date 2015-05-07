@@ -14,13 +14,8 @@
 
     <div id="custom-bootstrap-menu" class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
 
-            <div class="collapse navbar-collapse navbar-menubuilder">
+            <div class="navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-center">
                     <li><a href="/photoalbum">Home</a></li>
                     <li><a href="/photoalbum/albums/all">Albums</a></li>
@@ -31,6 +26,7 @@
                     <li><a href="/photoalbum/user/logout">Logout</a></li>
                 </ul>
             </div>
+
         </div>
     </div>
 </header>

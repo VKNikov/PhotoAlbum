@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-    <h1>Hi, ... !, Welcome to Vassil Nikov's Photo Album</h1>
+    <h2>Hi, ... !, Welcome to Vassil Nikov's Photo Album</h2>
 
     <div id="custom-bootstrap-menu" class="navbar navbar-default" role="navigation">
         <div class="container-fluid">

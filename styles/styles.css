@@ -9,6 +9,10 @@ header, footer {
     text-align: center;
 }
 
+footer {
+    padding: 5px;
+}
+
 .center {
     width: 80%;
     margin: 0 auto;
@@ -19,6 +23,7 @@ header, footer {
     margin: 0 auto;
 }
 
+/* Rewrite the bootstrap classes so the navigation menu isn't positioned to the left. */
 @media (min-width: 768px) {
     .navbar .navbar-nav {
         display: inline-block;
@@ -29,4 +34,8 @@ header, footer {
     .navbar .navbar-collapse {
         text-align: center;
     }
+}
+
+.error {
+    background-color: red;
 }

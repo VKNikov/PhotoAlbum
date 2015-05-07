@@ -9,8 +9,8 @@
 
 <div class="container">
     <div class="row">
-        <form role="form">
-            <div class="col-lg-6">
+        <form role="form" method="post">
+            <div class="inner">
                 <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
                 <div class="form-group">
                     <label for="InputName">Enter Name</label>
@@ -27,19 +27,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="InputEmail">Confirm Email</label>
+                    <label for="InputPass">Enter Password</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required>
+                        <input type="password" class="form-control" id="InputPass" name="InputPass" placeholder="Password" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="InputMessage">Enter Message</label>
+                    <label for="ConfirmPass">Confirm Password</label>
                     <div class="input-group">
-                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                        <input type="password" class="form-control" id="ConfirmPass" name="ConfirmPass" placeholder="Password" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
+
+                <a href="/photoalbum/user/login" class="btn btn-info pull-left">Login</a>
                 <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
             </div>
         </form>

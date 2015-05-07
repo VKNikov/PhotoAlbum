@@ -4,11 +4,29 @@ html, body {
 }
 
 header, footer {
-    background-color: aqua;
+    background-color: lightskyblue;
     width: 100%;
     text-align: center;
 }
 
 .center {
+    width: 80%;
     margin: 0 auto;
+}
+
+.inner {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
 }

@@ -6,13 +6,13 @@
  * Time: 22:10
  */
 
-namespace Controllers;
+//namespace Controllers;
 
 
 class UserController extends MainController{
 
     public function __construct() {
-        parent::__construct('/views/user/');
+        parent::__construct(get_class(), '/views/user/');
     }
 
     public function edit() {

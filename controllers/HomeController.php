@@ -6,13 +6,13 @@
  * Time: 15:14
  */
 
-namespace Controllers;
+//namespace Controllers;
 
 
 class HomeController extends MainController {
 
     public function __construct() {
-        parent::__construct('/views/home/');
+        parent::__construct(get_class(), '/views/home/');
     }
 
 

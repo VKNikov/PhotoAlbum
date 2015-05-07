@@ -6,13 +6,25 @@
  * Time: 22:09
  */
 
-namespace Controllers;
+//namespace Controllers;
 
 
-class AlbumController extends MainController{
+class AlbumsController extends MainController{
 
     public function __construct() {
-        parent::__construct('/views/albums/');
+        parent::__construct(get_class(),'/views/albums/');
+    }
+
+    public function index() {
+        $this->template = ROOT_DIR . '/views/albums/index.php';
+
+        include_once $this->layout;
+    }
+
+    public function all() {
+        $this->template = ROOT_DIR . '/views/albums/all.php';
+
+        include_once $this->layout;
     }
 
     public function create() {

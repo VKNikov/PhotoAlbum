@@ -6,13 +6,13 @@
  * Time: 22:10
  */
 
-namespace Controllers;
+//namespace Controllers;
 
 
-class PictureController extends MainController{
+class PicturesController extends MainController{
 
     public function __construct() {
-        parent::__construct('/views/pictures/');
+        parent::__construct(get_class(), '/views/pictures/');
     }
 
     public function index() {
@@ -21,8 +21,14 @@ class PictureController extends MainController{
         include_once $this->layout;
     }
 
-    public function create() {
-        $this->template = ROOT_DIR . '/views/pictures/create.php';
+    public function all() {
+        $this->template = ROOT_DIR . '/views/pictures/all.php';
+
+        include_once $this->layout;
+    }
+
+    public function add() {
+        $this->template = ROOT_DIR . '/views/pictures/add.php';
 
         include_once $this->layout;
     }

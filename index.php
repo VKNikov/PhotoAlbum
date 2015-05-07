@@ -5,6 +5,7 @@
  * Date: 3.5.2015 г.
  * Time: 18:12
  */
+session_start();
 
 include_once('config/config.php');
 include_once 'libs/Database.php';
@@ -32,7 +33,8 @@ if (!empty($request)) {
             if (class_exists($className)) {
                 list($controller, $action) = $requestParts;
             } else {
-                include_once 'controllers/MainController.php';
+                $controllerFileName = 'controllers/' . $className . '.php';
+                die ('Error: cannot find controller: ' . $className);
             }
 
             if (isset($requestParts[2])) {
@@ -45,7 +47,8 @@ if (!empty($request)) {
     }
 }
 
-$class = '\controllers\\' . ucfirst($controller) . 'Controller';
+//$class = '\controllers\\' . ucfirst($controller) . 'Controller';
+$class = ucfirst($controller) . 'Controller';
 $instance = new $class;
 
 if (method_exists($instance, $action)) {
@@ -53,8 +56,9 @@ if (method_exists($instance, $action)) {
 }
 
 function __autoload($className) {
+    //include_once 'controllers/MainController.php';
     if (file_exists("controllers/$className.php")) {
-        include "controllers/$className.php";
+        include_once "controllers/$className.php";
     }
 
     if (file_exists("models/$className.php")) {

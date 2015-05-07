@@ -6,7 +6,7 @@
  * Time: 18:13
  */
 
-namespace Controllers;
+//namespace Controllers;
 
 
 class MainController {
@@ -14,7 +14,7 @@ class MainController {
     protected $layout;
     protected $template;
 
-    public function __construct($viewLocation = '/views/main/' ) {
+    public function __construct($className = 'MainController', $viewLocation = '/views/main/' ) {
         $this->viewLocation = $viewLocation;
         $this->layout = ROOT_DIR . '/views/layouts/default.php';
     }

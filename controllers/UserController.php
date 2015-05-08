@@ -37,12 +37,10 @@ class UserController extends MainController
             }
 
             if ($this->userModel->register($username, $email, $password)) {
-                //$this->addInfoMessage("Author created.");
-                //$this->redirect("authors");
+                $this->addInfoMessage("Registration successful. You can now logon in.");
                 $this->redirect('main');
             } else {
-                //$this->addErrorMessage("Cannot create author.");
-                exit('Error: Sorry, could not register this user.');
+                $this->addErrorMessage("Registration failed. Please try again.");
             }
         }
 

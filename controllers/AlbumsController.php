@@ -50,8 +50,7 @@ class AlbumsController extends MainController
                 $this->addInfoMessage("Album created");
                 $this->redirect("albums");
             } else {
-                //$this->addErrorMessage("Cannot create author.");
-                exit('Error: Sorry, could not create this album');
+                $this->addErrorMessage("Cannot create Album.");
             }
         }
 

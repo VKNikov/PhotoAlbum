@@ -56,4 +56,11 @@ class PicturesController extends MainController
 
         include_once $this->layout;
     }
+
+    public function album($albumId) {
+        $pictures = $this->picturesModel->getByAlbum($albumId);
+        $this->template = ROOT_DIR . '/views/pictures/album.php';
+
+        include_once $this->layout;
+    }
 }

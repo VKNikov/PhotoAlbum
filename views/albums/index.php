@@ -13,7 +13,8 @@
         <div class="inner">
             <?php
             foreach ($albums as $a) {
-                echo '<p value=' . $a['id'] . '>' . $a['name'] . '</p>';
+                echo '<p value=' . $a['id'] . '><a href= "/photoalbum/pictures/album/' .
+                    $a['id'] . '">' . $a['name'] . '</a></p>';
             }
 
             if ($_SESSION['username']) {

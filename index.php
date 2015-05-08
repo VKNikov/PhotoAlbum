@@ -57,7 +57,7 @@ $class = ucfirst($controller) . 'Controller';
 $instance = new $class;
 
 if (method_exists($instance, $action)) {
-    call_user_func_array(array($instance, $action), array($params));
+    call_user_func_array(array($instance, $action), $params);
 }
 
 function __autoload($className) {

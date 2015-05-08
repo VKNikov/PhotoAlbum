@@ -15,8 +15,12 @@
             foreach ($albums as $a) {
                 echo '<p value=' . $a['id'] . '>' . $a['name'] . '</p>';
             }
+
+            if ($_SESSION['username']) {
+                echo '<a href="/photoalbum/albums/create" class="btn btn-info pull-left">Create New Album</a>';
+            }
             ?>
-            <a href="/photoalbum/albums/create" class="btn btn-info pull-left">Create New Album</a>
+
         </div>
     </div>
 </div>

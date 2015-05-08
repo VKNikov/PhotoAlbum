@@ -32,11 +32,14 @@ class PicturesModel extends MainModel
                 mkdir($filePath);
             }
 
-            $fileName = $_FILES['file']['name'] . '_' . time();
-            $result = move_uploaded_file($_FILES['file']['tmp_name'], $filePath . $fileName);
+            $filename = $_FILES['file']['name'];
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            $filename = basename($filename, '.' . $ext) . '_' . time() . '.' . $ext;;
+            $result = move_uploaded_file($_FILES['file']['tmp_name'], $filePath . $filename);
+            $this->createThumbnail($filePath . $filename);
 
             if ($result) {
-                $picFilename = array('pic_filename' => $fileName);
+                $picFilename = array('pic_filename' => $filename);
                 $element = array_merge($element, $picFilename);
                 $this->add($element);
 
@@ -47,4 +50,38 @@ class PicturesModel extends MainModel
         }
     }
 
+    public function createThumbnail($source, $thumbnailWidth = 100) {
+        $filePath = dirname($source);
+        $filename = 'thumb_' . basename($source);
+
+        if (exif_imagetype($source) == IMAGETYPE_GIF) {
+            $img = imagecreatefromgif($source);
+            $temp_image = $this->buildGenericThumb($img, $thumbnailWidth);
+            imagegif($temp_image, $filePath . '/' . $filename);
+        }
+
+        if(exif_imagetype($source) == IMAGETYPE_JPEG) {
+            $img = imagecreatefromjpeg($source);
+            $temp_image = $this->buildGenericThumb($img, $thumbnailWidth);
+            imagejpeg($temp_image, $filePath . '/' . $filename);
+        }
+
+        if (exif_imagetype($source) == IMAGETYPE_PNG) {
+            $img = imagecreatefrompng($source);
+            $temp_image = $this->buildGenericThumb($img, $thumbnailWidth);
+            imagepng($temp_image, $filePath . '/' . $filename);
+        }
+    }
+
+    public function buildGenericThumb($img, $thumbnailWidth) {
+        $currentWidth = imagesx($img);
+        $currentHeight = imagesx($img);
+
+        $newWidth = $thumbnailWidth;
+        $newHeight = floor($currentHeight * ($thumbnailWidth / $currentWidth));
+        $temp_image = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresized($temp_image, $img, 0, 0, 0, 0, $newWidth, $newHeight, $currentWidth, $currentHeight);
+
+        return $temp_image;
+    }
 }

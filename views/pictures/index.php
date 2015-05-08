@@ -9,5 +9,10 @@
 
 <h1>Pictures' main page.</h1>
 <div class="container">
-    <a href="/photoalbum/pictures/add" class="btn btn-info pull-left">Add New Picture</a>
+    <?php
+    if ($_SESSION['username']) {
+        echo '<a href="/photoalbum/pictures/add" class="btn btn-info pull-left">Add New Picture</a>';
+    }
+    ?>
+
 </div>

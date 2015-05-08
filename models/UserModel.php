@@ -28,7 +28,7 @@ class UserModel extends MainModel
                 return true;
             }
 
-            //TODO: errormsg invalid pass
+            return false;
         }
 
         return false;

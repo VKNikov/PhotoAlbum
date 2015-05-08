@@ -55,4 +55,20 @@ class MainController
 
         $this->redirectToUrl($url);
     }
+
+    function addMessage($msg, $type) {
+        if (!isset($_SESSION['messages'])) {
+            $_SESSION['messages'] = array();
+        };
+        array_push($_SESSION['messages'],
+            array('text' => $msg, 'type' => $type));
+    }
+
+    function addInfoMessage($msg) {
+        $this->addMessage($msg, 'success');
+    }
+
+    function addErrorMessage($msg) {
+        $this->addMessage($msg, 'error');
+    }
 }

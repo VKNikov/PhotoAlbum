@@ -32,7 +32,7 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
-                <a href="/photoalbum/user/register" class="btn btn-info pull-left">Register</a>
+                <a href="/photoalbum/user/register" class="btn btn-info pull-left">Register Instead</a>
                 <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
             </div>
         </form>

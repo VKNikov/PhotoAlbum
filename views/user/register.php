@@ -50,21 +50,11 @@
                     </div>
                 </div>
 
-                <a href="/photoalbum/user/login" class="btn btn-info pull-left">Login</a>
+                <a href="/photoalbum/user/login" class="btn btn-info pull-left">Login Instead</a>
                 <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
             </div>
+
         </form>
-        <div class="col-lg-5 col-md-push-1">
-            <div class="col-md-12">
-                <div class="alert alert-success">
-                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                </div>
-                <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page
-                        inputs.</strong>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

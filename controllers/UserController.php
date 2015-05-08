@@ -59,11 +59,14 @@ class UserController extends MainController
 
             if (!is_null($username) && !is_null($password)) {
                 if ($this->userModel->login($username, $password)) {
+                    $this->addInfoMessage('Login successful!');
                     $this->redirect('albums');
                 }
 
-                //TODO: errormsg
+                $this->addErrorMessage('Invalid username or password. Please try again.');
+
             } else {
+                $this->addInfoMessage('Username or password cannot be empty!');
                 $this->redirect('user', 'login');
             }
         }

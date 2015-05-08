@@ -40,3 +40,5 @@
     </div>
 </header>
 <div class="center" id="wrapper">
+
+<?php include('messages.php'); ?>

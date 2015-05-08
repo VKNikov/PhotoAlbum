@@ -32,7 +32,11 @@ if (!empty($request)) {
         if (count($requestParts) > 1) {
             $className = ucfirst($requestParts[0]) . 'Controller';
             if (class_exists($className)) {
-                list($controller, $action) = $requestParts;
+                if ($requestParts[1] != '') {
+                    list($controller, $action) = $requestParts;
+                } else {
+                    $controller = $requestParts[0];
+                }
             } else {
                 $controllerFileName = 'controllers/' . $className . '.php';
                 die ('Error: cannot find controller: ' . $className);

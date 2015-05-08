@@ -7,7 +7,7 @@
  */
 ?>
 
-<h1>ALl Albums.</h1>
+<h1>All Albums.</h1>
 <div class="container">
     <a href="/photoalbum/albums/create" class="btn btn-info pull-left">Create New Album</a>
 </div>

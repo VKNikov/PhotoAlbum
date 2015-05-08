@@ -20,6 +20,15 @@ class AlbumsController extends MainController
 
     public function index()
     {
+        if ($this->authorization->isLoggedIn()) {
+            $albums = $this->albumsModel->getAlbumsByUser($_SESSION['user_id']);
+        } else {
+            $albums = $this->albumsModel->getWithLimit();
+        }
+
+        if (empty($albums)) {
+            $albums[0] = array('id' => 0, 'name' => 'There are no albums to display.');
+        }
         $this->template = ROOT_DIR . '/views/albums/index.php';
 
         include_once $this->layout;
@@ -37,9 +46,9 @@ class AlbumsController extends MainController
         if ($this->isPost) {
             $name = $_POST['albumName'];
             $description = $_POST['description'];
-            if ($this->albumsModel->add(array('name' => $name, 'description' => $description))) {
-                //$this->addInfoMessage("Author created.");
-                //$this->redirect("authors");
+            if ($this->albumsModel->add(array('user_id' => $_SESSION['user_id'], 'name' => $name, 'description' => $description))) {
+                $this->addInfoMessage("Album created");
+                $this->redirect("albums");
             } else {
                 //$this->addErrorMessage("Cannot create author.");
                 exit('Error: Sorry, could not create this album');

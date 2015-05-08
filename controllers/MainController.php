@@ -14,7 +14,7 @@ class MainController
     protected $layout;
     protected $template;
     protected $isPost = false;
-    protected $user;
+    protected $authorization;
 
     public function __construct($className = 'MainController', $viewLocation = '/views/main/')
     {
@@ -24,8 +24,7 @@ class MainController
             $this->isPost = true;
         }
 
-        $authorization = \libs\Authorization::get_instance();
-        $this->user = $authorization->getUser();
+        $this->authorization = \libs\Authorization::get_instance();
     }
 
     public function index()

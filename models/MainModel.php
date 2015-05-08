@@ -49,6 +49,10 @@ class MainModel
         return $this->find(array('limit' => ''));
     }
 
+    public function getWithLimit($limit = 10) {
+        return $this->find(array('limit' => $limit));
+    }
+
     public function update($element)
     {
 

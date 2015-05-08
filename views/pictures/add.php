@@ -23,7 +23,7 @@
                         <div class="input-group">
                             <select name="albumName" id="albumName">
                                 <?php
-                                foreach ($album as $a) {
+                                foreach ($albums as $a) {
                                     echo '<option value=' . $a['id'] . '>' . $a['name'] . '</option>';
                                 }
                                 ?>
@@ -45,13 +45,13 @@
                     <label for="InputPass">Choose File</label>
 
                     <div class="input-group">
-                        <input type="file" class="form-control" id="file" name="pictureFile" required>
+                        <input type="file" class="form-control" id="file" name="File" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="InputPass">Public?</label>
+                    <label for="InputPass">Should the picture be public?</label>
 
                     <div class="input-group">
                         <input type="checkbox" class="form-control" name="isPublic" value="1">

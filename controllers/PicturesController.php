@@ -15,7 +15,7 @@ class PicturesController extends MainController
     public function __construct()
     {
         parent::__construct(get_class(), '/views/pictures/');
-        $this->picturesModel = new AlbumsModel();
+        $this->picturesModel = new PicturesModel();
     }
 
     public function index()
@@ -35,19 +35,23 @@ class PicturesController extends MainController
     public function add()
     {
         if ($this->isPost) {
+            $user_id = $_SESSION['user_id'];
             $albumId = $_POST['albumName'];
             $pictureName = $_POST['pictureName'];
             $description = $_POST['description'];
             $isPublic = $_POST['isPublic'];
-            if ($this->picturesModel->add(array('album_id' => $albumId, 'description' => $description))) {
-                //$this->addInfoMessage("Author created.");
-                //$this->redirect("authors");
+            $result = $this->picturesModel->uploadPicture(array('user_id' => $user_id, 'album_id' => $albumId,
+                'name' => $pictureName, 'description' => $description, 'is_public' => $isPublic));
+            if (!is_null($result['success'])) {
+                $this->addInfoMessage($result['success']);
+                $this->redirect("pictures");
             } else {
-                //$this->addErrorMessage("Cannot create author.");
-                exit('Error: Sorry, could not create this album');
+                $this->addErrorMessage($result['error']);
+                $this->redirect('pictures', 'add');
             }
         }
 
+        $albums = $this->picturesModel->getAlbumsByUser($_SESSION['user_id']);
         $this->template = ROOT_DIR . '/views/pictures/add.php';
 
         include_once $this->layout;

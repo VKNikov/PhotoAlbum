@@ -45,7 +45,16 @@
                     <label for="InputPass">Choose File</label>
 
                     <div class="input-group">
-                        <input type="file" class="form-control" id="file" name="File" required>
+                        <input type="file" class="form-control" id="file" name="file" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputPass">Picture Description</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="description" name="description">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
@@ -54,7 +63,7 @@
                     <label for="InputPass">Should the picture be public?</label>
 
                     <div class="input-group">
-                        <input type="checkbox" class="form-control" name="isPublic" value="1">
+                        <input type="checkbox" class="form-control" name="isPublic" value="1" checked>
                         <span class="input-group-addon"></span>
                     </div>
                 </div>

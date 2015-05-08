@@ -15,8 +15,4 @@ class AlbumsModel extends MainModel
     {
         parent::__construct(array('entity' => 'albums'));
     }
-
-    public function getAlbumsByUser($userId) {
-        return $this->find(array('where' => 'user_id = ' . $userId));
-    }
 }

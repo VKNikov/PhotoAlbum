@@ -16,18 +16,18 @@ class PicturesModel extends MainModel
         parent::__construct(array('entity' => 'pictures'));
     }
 
-    public function uploadPicture() {
+    public function uploadPicture($element) {
         if ($_FILES['file']['tmp_name']) {
             if ($_FILES['file']['size'] > 2097152) {
-                return $error = array('text' => 'The file you are trying to upload is larger than 2mb in size!');
+                return array('error' => 'The file you are trying to upload is larger than 2mb in size!');
             }
 
             $type = $_FILES['file']['type'];
-            if ($type != 'image/gif' && $type != 'image/jpg' && $type != 'image/png') {
-                return $error = array('text' => 'The file you are trying to upload is not a valid image format!');
+            if ($type != 'image/gif' && $type != 'image/jpeg' && $type != 'image/png') {
+                return array('error' => 'The file you are trying to upload is not a valid image format!');
             }
 
-            $filePath = ROOT_DIR . '/user_images/' . $_SESSION['user_id'];
+            $filePath = ROOT_DIR . 'user_images/' . $_SESSION['user_id'] . '/';
             if (!is_dir($filePath)) {
                 mkdir($filePath);
             }
@@ -36,10 +36,14 @@ class PicturesModel extends MainModel
             $result = move_uploaded_file($_FILES['file']['tmp_name'], $filePath . $fileName);
 
             if ($result) {
-                return true;
+                $picFilename = array('pic_filename' => $fileName);
+                $element = array_merge($element, $picFilename);
+                $this->add($element);
+
+                return array('success' => 'Picture added to the album successfully!');
             }
 
-            return $error = array('text' => 'There was an error while copying the file. Please try again or contact the system administrator');
+            return array('error' => 'There was an error while copying the file. Please try again or contact the system administrator');
         }
     }
 

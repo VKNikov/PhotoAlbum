@@ -53,6 +53,10 @@ class MainModel
         return $this->find(array('limit' => $limit));
     }
 
+    public function getAlbumsByUser($userId) {
+        return $this->find(array('where' => 'user_id = ' . $userId, 'columns' => 'id, name', 'entity' => 'albums'));
+    }
+
     public function update($element)
     {
 

@@ -5,31 +5,35 @@
  * Date: 6.5.2015 г.
  * Time: 22:09
  */
-
 //namespace Controllers;
 
 
-class AlbumsController extends MainController{
+class AlbumsController extends MainController
+{
     protected $albumsModel;
 
-    public function __construct() {
-        parent::__construct(get_class(),'/views/albums/');
+    public function __construct()
+    {
+        parent::__construct(get_class(), '/views/albums/');
         $this->albumsModel = new AlbumsModel();
     }
 
-    public function index() {
+    public function index()
+    {
         $this->template = ROOT_DIR . '/views/albums/index.php';
 
         include_once $this->layout;
     }
 
-    public function all() {
+    public function all()
+    {
         $this->template = ROOT_DIR . '/views/albums/all.php';
 
         include_once $this->layout;
     }
 
-    public function create() {
+    public function create()
+    {
         if ($this->isPosted) {
             $name = $_POST['albumName'];
             $description = $_POST['description'];

@@ -5,20 +5,21 @@
  * Date: 5.5.2015 г.
  * Time: 16:53
  */
-
 //namespace Models;
 
 
-class MainModel {
+class MainModel
+{
     protected $entity;
     protected $limit;
     protected $db;
     protected $args;
 
-    public function __construct($args = array()) {
+    public function __construct($args = array())
+    {
         $this->entity = $args['entity'];
         if (!isset($args['limit'])) {
-           $this->limit = 10;
+            $this->limit = 10;
         } else {
             $this->limit = $args['limit'];
         }
@@ -33,23 +34,28 @@ class MainModel {
 
     }
 
-    public function get($id) {
+    public function get($id)
+    {
         return $this->find(array('where' => 'id = ' . $id));
     }
 
-    public function getByName($name) {
+    public function getByName($name)
+    {
         return $this->find(array('where' => "name = '" . $name) . "'");
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         return $this->find(array('limit' => ''));
     }
 
-    public function update($element) {
+    public function update($element)
+    {
 
     }
 
-    public function add($element) {
+    public function add($element)
+    {
         $keys = array_keys($element);
         $values = array();
 
@@ -66,7 +72,8 @@ class MainModel {
         return $this->db->affected_rows;
     }
 
-    public function find($args = array()) {
+    public function find($args = array())
+    {
         $default = array(
             'limit' => $this->limit,
             'entity' => $this->entity,
@@ -92,7 +99,8 @@ class MainModel {
         return $results;
     }
 
-    protected function retrieveData($dbResult) {
+    protected function retrieveData($dbResult)
+    {
         $results = array();
         if (!empty($dbResult) && $dbResult->num_rows > 0) {
             while ($row = $dbResult->fetch_assoc()) {

@@ -5,36 +5,41 @@
  * Date: 6.5.2015 г.
  * Time: 22:10
  */
-
 //namespace Controllers;
 
 
-class UserController extends MainController{
+class UserController extends MainController
+{
     protected $userModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(get_class(), '/views/user/');
     }
 
-    public function edit() {
+    public function edit()
+    {
         $this->template = ROOT_DIR . '/views/user/edit.php';
 
         include_once $this->layout;
     }
 
-    public function register() {
+    public function register()
+    {
         $this->template = ROOT_DIR . '/views/user/register.php';
 
         include_once $this->layout;
     }
 
-    public function login() {
+    public function login()
+    {
         $this->template = ROOT_DIR . '/views/user/login.php';
 
         include_once $this->layout;
     }
 
-    public function logout() {
+    public function logout()
+    {
         $this->template = ROOT_DIR . '/views/user/logout.php';
 
         include_once $this->layout;

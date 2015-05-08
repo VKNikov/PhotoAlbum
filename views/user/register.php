@@ -11,32 +11,41 @@
     <div class="row">
         <form role="form" method="post">
             <div class="inner">
-                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required
+                        Field</strong></div>
                 <div class="form-group">
                     <label for="InputName">Enter Name</label>
+
                     <div class="input-group">
-                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Name" required>
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Name"
+                               required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="InputEmail">Enter Email</label>
+
                     <div class="input-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email"
+                               required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="InputPass">Enter Password</label>
+
                     <div class="input-group">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                               required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="ConfirmPass">Confirm Password</label>
+
                     <div class="input-group">
-                        <input type="password" class="form-control" id="confirmPass" name="confirmPass" placeholder="Password" required>
+                        <input type="password" class="form-control" id="confirmPass" name="confirmPass"
+                               placeholder="Password" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
@@ -51,7 +60,8 @@
                     <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
                 </div>
                 <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page
+                        inputs.</strong>
                 </div>
             </div>
         </div>
@@ -59,8 +69,8 @@
 </div>
 
 <script>
-    jQuery(function(){
-        $("#submit").click(function(){
+    jQuery(function () {
+        $("#submit").click(function () {
             $(".error").hide();
             var hasError = false;
             var passwordVal = $("#password").val();
@@ -71,11 +81,13 @@
             } else if (checkVal == '') {
                 $("#confirmPass").after('<span class="error">Please re-enter your password.</span>');
                 hasError = true;
-            } else if (passwordVal != checkVal ) {
+            } else if (passwordVal != checkVal) {
                 $("#confirmPass").after('<span class="error">Passwords do not match.</span>');
                 hasError = true;
             }
-            if(hasError == true) {return false;}
+            if (hasError == true) {
+                return false;
+            }
         });
     });
 </script>

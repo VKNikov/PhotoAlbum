@@ -12,17 +12,22 @@
         <form role="form" method="post">
             <div class="inner">
                 <h1>Add New Album</h1>
-                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+
+                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required
+                        Field</strong></div>
                 <div class="form-group">
                     <label for="AlbumName">Enter Album's Name</label>
+
                     <div class="input-group">
-                        <input type="text" class="form-control" name="albumName" id="albumName" placeholder="Album Name" required>
+                        <input type="text" class="form-control" name="albumName" id="albumName" placeholder="Album Name"
+                               required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="InputMessage">Enter Description</label>
+
                     <div class="input-group">
                         <textarea name="description" id="description" class="form-control" rows="5"></textarea>
                         <span class="input-group-addon"></span>

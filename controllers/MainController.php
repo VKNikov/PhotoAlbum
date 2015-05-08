@@ -43,7 +43,7 @@ class MainController
 
     public function redirect($controller, $action = null, $params = null)
     {
-        $url = '/' . urlencode($controller);
+        $url = '/photoalbum/' . urlencode($controller);
         if (!is_null($action)) {
             $url .= '/' . urlencode($action);
         }
@@ -53,6 +53,6 @@ class MainController
             $url .= implode('/', $params);
         }
 
-        $this->redirect($url);
+        $this->redirectToUrl($url);
     }
 }

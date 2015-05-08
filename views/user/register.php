@@ -17,7 +17,7 @@
                     <label for="InputName">Enter Name</label>
 
                     <div class="input-group">
-                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Name"
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Name"
                                required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ConfirmPass">Confirm Password</label>
+                    <label for="confirmPass">Confirm Password</label>
 
                     <div class="input-group">
                         <input type="password" class="form-control" id="confirmPass" name="confirmPass"

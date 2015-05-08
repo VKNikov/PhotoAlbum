@@ -24,9 +24,13 @@ class Authorization
             self::$isLoggedIn = true;
 
             self::$user = array(
-                'id' => $_SESSION['id'],
+                'id' => $_SESSION['user_id'],
                 'username' => $_SESSION['username']
             );
+
+            if (!empty($_SESSION['isAdmin'])) {
+                self::$isAdmin = true;
+            }
         }
     }
 
@@ -43,6 +47,10 @@ class Authorization
 
     public function isLoggedIn() {
         return self::$isLoggedIn;
+    }
+
+    public function isAdmin() {
+        return self::$isAdmin;
     }
 
     public function getUser() {

@@ -59,7 +59,7 @@ class MainModel
         $keys = array_keys($element);
         $values = array();
 
-        foreach ($element as $keys => $value) {
+        foreach ($element as $key => $value) {
             $values[] = "'" . $this->db->real_escape_string($value) . "'";
         }
 
@@ -82,15 +82,16 @@ class MainModel
         );
 
         $args = array_merge($default, $args);
+        extract( $args );
 
         $query = "SELECT {$args['columns']} FROM {$args['entity']}";
 
-        if (!empty($args['where'])) {
-            $query . "WHERE {$args['where']}";
+        if (!empty($where)) {
+            $query .= " WHERE $where";
         }
 
-        if (!empty($args['limit'])) {
-            $query . "LIMIT {$args['limit']}";
+        if (!empty($limit)) {
+            $query .= " LIMIT $limit";
         }
 
         $dbResult = $this->db->query($query);

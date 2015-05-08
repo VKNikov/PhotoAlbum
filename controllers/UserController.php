@@ -15,6 +15,7 @@ class UserController extends MainController
     public function __construct()
     {
         parent::__construct(get_class(), '/views/user/');
+        $this->userModel = new UserModel();
     }
 
     public function edit()
@@ -26,6 +27,25 @@ class UserController extends MainController
 
     public function register()
     {
+        if ($this->isPost) {
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $confirmPass = $_POST['confirmPass'];
+            if ($password !== $confirmPass) {
+                exit('Error: Sorry, passwords did not match');
+            }
+
+            if ($this->userModel->register($username, $email, $password)) {
+                //$this->addInfoMessage("Author created.");
+                //$this->redirect("authors");
+                $this->redirect('main');
+            } else {
+                //$this->addErrorMessage("Cannot create author.");
+                exit('Error: Sorry, could not register this user.');
+            }
+        }
+
         $this->template = ROOT_DIR . '/views/user/register.php';
 
         include_once $this->layout;
@@ -33,6 +53,21 @@ class UserController extends MainController
 
     public function login()
     {
+        if ($this->isPost) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            if (!is_null($username) && !is_null($password)) {
+                if ($this->userModel->login($username, $password)) {
+                    $this->redirect('albums');
+                }
+
+                //TODO: errormsg
+            } else {
+                $this->redirect('user', 'login');
+            }
+        }
+
         $this->template = ROOT_DIR . '/views/user/login.php';
 
         include_once $this->layout;
@@ -40,8 +75,9 @@ class UserController extends MainController
 
     public function logout()
     {
-        $this->template = ROOT_DIR . '/views/user/logout.php';
+        $_SESSION['username'] = '';
+        $_SESSION['user_id'] = '';
 
-        include_once $this->layout;
+        $this->redirect('main');
     }
 }

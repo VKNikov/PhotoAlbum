@@ -17,7 +17,7 @@
                     <label for="InputName">Username</label>
 
                     <div class="input-group">
-                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Name"
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Name"
                                required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>

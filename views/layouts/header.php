@@ -10,7 +10,12 @@
 </head>
 <body>
 <header>
-    <h2>Hi, ... !, Welcome to Vassil Nikov's Photo Album</h2>
+    <?php if (!empty($_SESSION['username'])) {
+        echo "<h2>Hi, {$_SESSION['username']}!, Welcome back to your Photo Album</h2>";
+    } else {
+        echo "<h2>Welcome to Vassil's Photo Album website</h2>";
+    } ?>
+
 
     <div id="custom-bootstrap-menu" class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -20,10 +25,14 @@
                     <li><a href="/photoalbum">Home</a></li>
                     <li><a href="/photoalbum/albums/all">Albums</a></li>
                     <li><a href="/photoalbum/pictures/all">Pictures</a></li>
-                    <li><a href="/photoalbum/user/edit">Edit Profile</a></li>
-                    <li><a href="/photoalbum/user/register">Register</a></li>
-                    <li><a href="/photoalbum/user/login">Login</a></li>
-                    <li><a href="/photoalbum/user/logout">Logout</a></li>
+                    <?php
+                    if (!empty($_SESSION['username'])) {
+                        echo '<li><a href=' . "/photoalbum/user/edit" . '>Edit Profile</a></li>';
+                        echo '<li><a href=' . "/photoalbum/user/logout" . '>Logout</a></li>';
+                    } else {
+                        echo '<li><a href=' . "/photoalbum/user/register" . '>Register</a></li>';
+                        echo '<li><a href=' . "/photoalbum/user/login" . '>Login</a></li>';
+                    } ?>
                 </ul>
             </div>
 

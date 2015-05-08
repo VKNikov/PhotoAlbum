@@ -15,4 +15,36 @@ class UserModel extends MainModel
     {
         parent::__construct(array('entity' => 'users'));
     }
+
+    public function login($username, $password)
+    {
+        $result = $this->find(array('columns' => 'id, username, password',
+            'where' => "username = " . "'" .$username . "'"));
+
+        if (!empty($result)) {
+            if (password_verify($password, $result[0]['password'])) {
+                $_SESSION['username'] = $result[0]['username'];
+                $_SESSION['user_id'] = $result[0]['id'];
+                return true;
+            }
+
+            //TODO: errormsg invalid pass
+        }
+
+        return false;
+    }
+
+    public function register($username, $email, $password)
+    {
+        $password = password_hash($password, PASSWORD_BCRYPT);
+
+        $result = $this->find(array('entity' => 'users', 'where' => "username = " . "'" .$username . "'", 'limit' => ''));
+        if (empty($result)) {
+            $this->add(array('username' => $username, 'email' => $email, 'password' => $password));
+
+            return true;
+        }
+
+       return false;
+    }
 }

@@ -13,15 +13,19 @@ class MainController
     protected $viewLocation;
     protected $layout;
     protected $template;
-    protected $isPosted = false;
+    protected $isPost = false;
+    protected $user;
 
     public function __construct($className = 'MainController', $viewLocation = '/views/main/')
     {
         $this->viewLocation = $viewLocation;
         $this->layout = ROOT_DIR . '/views/layouts/default.php';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->isPosted = true;
+            $this->isPost = true;
         }
+
+        $authorization = \libs\Authorization::get_instance();
+        $this->user = $authorization->getUser();
     }
 
     public function index()
@@ -31,19 +35,24 @@ class MainController
         include_once $this->layout;
     }
 
-    protected function isLoggedIn()
-    {
-        return isset($_SESSION['username']);
-    }
-
     public function redirectToUrl($url)
     {
         header('Location: ' . $url);
         die;
     }
 
-    public function redirect($controller, $action = null)
+    public function redirect($controller, $action = null, $params = null)
     {
+        $url = '/' . urlencode($controller);
+        if (!is_null($action)) {
+            $url .= '/' . urlencode($action);
+        }
 
+        if (!is_null($params)) {
+            $params = array_map($params, 'urlencode');
+            $url .= implode('/', $params);
+        }
+
+        $this->redirect($url);
     }
 }

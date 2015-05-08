@@ -9,16 +9,19 @@
 namespace Libs;
 
 
-class Database {
+class Database
+{
     private static $db;
 
-    private function __construct() {
+    private function __construct()
+    {
         $current_db = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         self::$db = $current_db;
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         static $instance = null;
 
         if ($instance == null) {
@@ -28,7 +31,8 @@ class Database {
         return $instance;
     }
 
-    public static function getDb() {
+    public static function getDb()
+    {
         return self::$db;
     }
 }

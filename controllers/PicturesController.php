@@ -34,7 +34,7 @@ class PicturesController extends MainController
 
     public function add()
     {
-        if ($this->isPosted) {
+        if ($this->isPost) {
             $albumId = $_POST['albumName'];
             $pictureName = $_POST['pictureName'];
             $description = $_POST['description'];

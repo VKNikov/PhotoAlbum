@@ -34,7 +34,7 @@ class AlbumsController extends MainController
 
     public function create()
     {
-        if ($this->isPosted) {
+        if ($this->isPost) {
             $name = $_POST['albumName'];
             $description = $_POST['description'];
             if ($this->albumsModel->add(array('name' => $name, 'description' => $description))) {

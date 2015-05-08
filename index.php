@@ -5,10 +5,11 @@
  * Date: 3.5.2015 г.
  * Time: 18:12
  */
-session_start();
+//session_start();
 
 include_once('config/config.php');
 include_once 'libs/Database.php';
+include_once 'libs/Authorization.php';
 
 define( 'ROOT_DIR', dirname( __FILE__ ) . '/' );
 define( 'ROOT_PATH', basename( dirname( __FILE__ ) ) . '/' );

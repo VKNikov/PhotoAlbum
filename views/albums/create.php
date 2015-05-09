@@ -33,6 +33,15 @@
                         <span class="input-group-addon"></span>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="InputPass">Should the album be public?</label>
+
+                    <div class="input-group">
+                        <input type="checkbox" class="form-control" name="isPublic" value="1" checked>
+                        <span class="input-group-addon"></span>
+                    </div>
+                </div>
                 <input type="submit" name="submit" id="submit" value="Add Album" class="btn btn-info pull-right">
             </div>
         </form>

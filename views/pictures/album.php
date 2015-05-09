@@ -122,4 +122,42 @@
         </div>
     </div>
 
+    <div class="detailBox">
+            <div class="titleBox">
+                <label>Comment Box</label>
+<!--                <button type="button" class="close" aria-hidden="true">&times;</button>-->
+            </div>
+
+            <div class="actionBox">
+                <ul class="commentList">
+                    <?php
+                    foreach ($albumComments as $comment) : ?>
+                        <li>
+                            <div class="commentText">
+                                <p class=""><?php echo htmlspecialchars($comment['comment']); ?></p>
+                                <span class="date sub-text">on <?php echo $comment['created_on']; ?></span>
+                                <span class="date sub-text">By <?php echo $comment['username']; ?></span>
+                            </div>
+                        </li>
+                    <?php endforeach ?>
+
+                    <!--                    <div class="commenterImage">-->
+                    <!--                        <img src="http://lorempixel.com/50/50/people/6" />-->
+                    <!--                    </div>-->
+                </ul>
+                <?php
+                if (isset($_SESSION['username'])) : ?>
+                    <form class="form-inline" role="form" method="post">
+                        <div class="form-group">
+                            <input name="comment" id="comment" class="form-control" type="text" placeholder="Your comment" />
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-default" type="submit" value="Add"/>
+                        </div>
+                    </form>
+                <?php endif; ?>
+        </div>
+
+    </div>
+
 </div>

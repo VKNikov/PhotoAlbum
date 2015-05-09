@@ -11,35 +11,54 @@ echo '<img class="align-picture" src="/photoalbum/user_images/' .$picture[0]['us
 <div>
     <div class="inner">
         <?php
+        if (!$this->hasVoted) {
+            echo '<input id="like" class="btn btn-info pull-center"  type="submit" value="Like"/>';
+        } else {
+            echo '<input id="unlike" class="btn btn-info pull-center"  type="submit" value="unlike"/>';
+        }
+        ?>
+    </div>
+
+    <div class="detailBox">
+
+        <?php
         if (isset($_SESSION['username'])) : ?>
             <input id="userId" type="hidden" value="<?php echo $_SESSION['user_id'];?>"/>
             <input id="pictureId" type="hidden" value="<?php echo $picture[0]['id']; ?>"/>
         <?php endif ?>
-        <?php
-            if (!$this->hasVoted) {
-                echo '<input id="like" class="btn btn-info pull-center"  type="submit" value="Like"/>';
-            } else {
-                echo '<input id="unlike" class="btn btn-info pull-center"  type="submit" value="unlike"/>';
-            }
-        ?>
+
+
+        <div class="titleBox">
+            <label>Comment Box</label>
+        </div>
+
+        <div class="actionBox">
+            <ul class="commentList">
+                <?php
+                foreach ($comments as $c) : ?>
+                <li>
+                    <div class="commentText">
+                        <p class=""><?php echo htmlspecialchars($c['comment']); ?></p>
+                        <span class="date sub-text">on <?php echo $c['created_on']; ?></span>
+                        <span class="date sub-text">By <?php echo $c['username']; ?></span>
+                    </div>
+                </li>
+                <?php endforeach ?>
+            </ul>
+
+            <?php
+            if (isset($_SESSION['username'])) : ?>
+                <form class="form-inline" role="form" method="post">
+                    <div class="form-group">
+                        <input name="comment" id="comment" class="form-control" type="text" placeholder="Your comment" />
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-default" type="submit" value="Add"/>
+                    </div>
+                </form>
+            <?php endif; ?>
+
+        </div>
 
     </div>
-    <?php
-    foreach ($comments as $c) {
-        echo '<div class="inner comment"><p>' . htmlspecialchars($c['comment']) . '</p><span>Posted on: ' . $c['created_on'] . '</span>
-        <span>By: ' . htmlspecialchars($c['username']) . '</span></div>';
-    }
-
-    if (isset($_SESSION['username'])) : ?>
-        <div class="inner comment">
-            <form action="" method="post">
-                <div>
-                    <textarea name="comment" id="comment" cols="65" rows="10"></textarea>
-                </div>
-
-                <input id="postComment" class="btn btn-info pull-right"  type="submit" value="Post Comment"/>
-            </form>
-        </div>
-    <?php endif; ?>
-
 </div>

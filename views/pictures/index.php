@@ -7,12 +7,15 @@
  */
 ?>
 
-<h1>Pictures' main page.</h1>
+
 <div class="container">
-    <?php
-    if (isset($_SESSION['username'])) {
-        echo '<a href="/photoalbum/pictures/add" class="btn btn-info pull-left">Add New Picture</a>';
-    }
-    ?>
+    <div class="inner">
+        <h1>Pictures' main page.</h1>
+        <?php
+        if (isset($_SESSION['username'])) {
+            echo '<a href="/photoalbum/pictures/add" class="btn btn-info pull-left">Add New Picture</a>';
+        }
+        ?>
+    </div>
 
 </div>

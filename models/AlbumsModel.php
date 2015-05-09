@@ -15,4 +15,8 @@ class AlbumsModel extends MainModel
     {
         parent::__construct(array('entity' => 'albums'));
     }
+
+    public function getAlbumsWithLimit($limit = 10) {
+        return $this->find(array('limit' => $limit, 'where' => 'is_public = ' . 1));
+    }
 }

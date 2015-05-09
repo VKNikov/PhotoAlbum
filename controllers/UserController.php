@@ -58,7 +58,7 @@ class UserController extends MainController
             if (!is_null($username) && !is_null($password)) {
                 if ($this->userModel->login($username, $password)) {
                     $this->addInfoMessage('Login successful!');
-                    $this->redirect('albums');
+                    $this->redirect('albums', 'home');
                 }
 
                 $this->addErrorMessage('Invalid username or password. Please try again.');
@@ -79,6 +79,6 @@ class UserController extends MainController
         unset($_SESSION['username']);
         unset($_SESSION['user_id']);
 
-        $this->redirect('main');
+        $this->redirect('albums', 'index');
     }
 }

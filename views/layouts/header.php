@@ -25,11 +25,12 @@
 
             <div class="navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-center">
-                    <li><a href="/photoalbum">Home</a></li>
+
                     <li><a href="/photoalbum/albums/">Albums</a></li>
                     <li><a href="/photoalbum/pictures/">Pictures</a></li>
                     <?php
                     if (!empty($_SESSION['username'])) {
+                        echo '<li><a href="/photoalbum/albums/home">Home</a></li>';
                         echo '<li><a href=' . "/photoalbum/user/edit" . '>Edit Profile</a></li>';
                         echo '<li><a href=' . "/photoalbum/user/logout" . '>Logout</a></li>';
                     } else {

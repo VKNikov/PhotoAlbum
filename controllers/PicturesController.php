@@ -85,6 +85,19 @@ class PicturesController extends MainController
     }
 
     public function album($albumId) {
+
+        if ($this->isPost) {
+            $user_id = $_SESSION['user_id'];
+            $comment = $_POST['comment'];
+            if (!empty($comment)) {
+                $this->picturesModel->postAlbumComment(array('user_id' => $user_id, 'album_id' => $albumId,
+                    'comment' => $comment));
+                $this->addInfoMessage('Comment added successfully!');
+            } else {
+                $this->addErrorMessage('Couldn not add the comment. Please try again.');
+            }
+        }
+
         $pictures = $this->picturesModel->getByAlbum($albumId);
         $pictureComments = array();
 
@@ -98,6 +111,8 @@ class PicturesController extends MainController
         if ($this->authorization->isLoggedIn()) {
             $this->hasVoted = $this->picturesModel->checkUserAlbumVote($_SESSION['user_id'], $albumId);
         }
+
+        $albumComments = $this->picturesModel->getAlbumsComments($albumId);
 
         $this->template = ROOT_DIR . '/views/pictures/album.php';
 

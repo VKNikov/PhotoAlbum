@@ -58,6 +58,10 @@ footer {
     border: 1px solid darkgray;
 }
 
+.anchorButton {
+
+}
+
 textarea {
     resize: none;
 }

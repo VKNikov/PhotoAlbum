@@ -39,9 +39,10 @@
     <div id="links">
         <?php
         foreach ($pictures as $p) {
-            echo '<a id="'. $p['id'] . '" href="/photoalbum/user_images/' . $_SESSION['user_id'] . '/' . $p['pic_filename'] .
-                '" title="' . $p['description'] . '" data-gallery=""> <img src="/photoalbum/user_images/' . $_SESSION['user_id'] . '/' .
-                'thumb_' . $p['pic_filename'] . '" title="' . $p['description'] . '"/></a>';
+            echo '<a class="anchorButton" id="'. $p['id'] . '" href="/photoalbum/user_images/' . $p['user_id'] .
+                '/' . $p['album_id'] . '/' . $p['pic_filename'] . '" title="' . $p['description'] .
+                '" data-gallery=""> <img src="/photoalbum/user_images/' . $p['user_id'] . '/' .
+                $p['album_id'] . '/' . 'thumb_' . $p['pic_filename'] . '" title="' . $p['description'] . '"/></a>';
         }
         ?>
 

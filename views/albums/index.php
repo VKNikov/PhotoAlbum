@@ -17,7 +17,7 @@
                     $a['id'] . '">' . $a['name'] . '</a></p>';
             }
 
-            if ($_SESSION['username']) {
+            if (isset($_SESSION['username'])) {
                 echo '<a href="/photoalbum/albums/create" class="btn btn-info pull-left">Create New Album</a>';
             }
             ?>

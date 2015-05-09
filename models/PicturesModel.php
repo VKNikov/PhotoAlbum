@@ -27,7 +27,8 @@ class PicturesModel extends MainModel
                 return array('error' => 'The file you are trying to upload is not a valid image format!');
             }
 
-            $filePath = ROOT_DIR . 'user_images/' . $_SESSION['user_id'] . '/';
+            $filePath = ROOT_DIR . 'user_images/' . $_SESSION['user_id'] . '/' .
+                $element['album_id'] . '/';
             if (!is_dir($filePath)) {
                 mkdir($filePath);
             }
@@ -69,7 +70,7 @@ class PicturesModel extends MainModel
     }
 
     public function getByAlbum($albumId) {
-        return $this->find(array('columns' => 'id, description, pic_filename', 'where' => 'album_id = ' . $albumId));
+        return $this->find(array('columns' => 'id, description, pic_filename, album_id, user_id', 'where' => 'album_id = ' . $albumId));
     }
 
     public function getPicturesComments($picture_id) {

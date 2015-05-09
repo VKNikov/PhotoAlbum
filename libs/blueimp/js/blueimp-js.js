@@ -14,7 +14,7 @@
 
 $(function () {
     'use strict';
-    $("a").on('click', function(event) {
+    $(".anchorButton").on('click', function(event) {
         //event.preventDefault();
         var id = this.id;
         window.location.href = "/photoalbum/pictures/id/" + id;

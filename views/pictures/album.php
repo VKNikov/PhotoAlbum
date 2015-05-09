@@ -14,17 +14,35 @@
             <label class="btn btn-success btn-lg">
                 <i class="glyphicon glyphicon-leaf">
                 </i>
-                <input id="borderless-checkbox" type="checkbox"></input>
+                <input id="borderless-checkbox" type="checkbox"/>
                 Borderless
             </label>
             <label class="btn btn-primary btn-lg">
                 <i class="glyphicon glyphicon-fullscreen">
                 </i>
-                <input id="fullscreen-checkbox" type="checkbox"></input>
+                <input id="fullscreen-checkbox" type="checkbox"/>
                 Fullscreen
             </label>
 
         </div>
+        <?php
+        if (isset($_SESSION['username'])) : ?>
+            <div class="form-group">
+                <input id="userId" type="hidden" value="<?php echo $_SESSION['user_id'];?>"/>
+                <input id="albumId" type="hidden" value="<?php echo $albumId; ?>" />
+                <?php
+                if ($this->hasVoted) : ?>
+                    <button id="unlikeAlbum" class="btn btn-primary btn-lg" type="button">
+                        Unlike Album
+                    </button>
+                <?php else : ?>
+                    <button id="likeAlbum" class="btn btn-primary btn-lg" type="button">
+                        Like Album
+                    </button>
+                <?php endif ?>
+
+            </div>
+        <?php endif?>
 
     </form>
 

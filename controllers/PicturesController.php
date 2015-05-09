@@ -40,7 +40,7 @@ class PicturesController extends MainController
         }
 
         if ($this->authorization->isLoggedIn()) {
-            $this->hasVoted = $this->picturesModel->checkUserVote($_SESSION['user_id'], $pictureId);
+            $this->hasVoted = $this->picturesModel->checkUserPictureVote($_SESSION['user_id'], $pictureId);
         }
 
 
@@ -93,6 +93,10 @@ class PicturesController extends MainController
             if (!empty($comments)) {
                 $pictureComments[$comments[0]['id']] = $comments;
             }
+        }
+
+        if ($this->authorization->isLoggedIn()) {
+            $this->hasVoted = $this->picturesModel->checkUserAlbumVote($_SESSION['user_id'], $albumId);
         }
 
         $this->template = ROOT_DIR . '/views/pictures/album.php';

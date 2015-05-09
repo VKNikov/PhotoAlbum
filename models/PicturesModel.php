@@ -86,9 +86,20 @@ class PicturesModel extends MainModel
         return $comments;
     }
 
-    public function checkUserVote($userId, $pictureId) {
+    public function checkUserPictureVote($userId, $pictureId) {
         $result = $this->find(array('entity' => 'users_pictures_votes',
             'where' => 'user_id = ' . $userId . ' and ' . 'picture_id = ' . $pictureId));
+
+        if (!empty($result)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function checkUserAlbumVote($userId, $albumId) {
+        $result = $this->find(array('entity' => 'users_albums_votes',
+            'where' => 'user_id = ' . $userId . ' and ' . 'album_id = ' . $albumId));
 
         if (!empty($result)) {
             return true;

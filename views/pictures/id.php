@@ -11,16 +11,16 @@ echo '<img class="align-picture" src="/photoalbum/user_images/' .$picture[0]['us
 <div>
     <div class="inner">
         <?php
-        if (isset($_SESSION['username'])) {
-            echo '<input id="userId" type="hidden" value="<?php echo "' . $_SESSION['user_id'] . '";?>"/>';
-            echo '<input id="pictureId" type="hidden" value="<?php echo "' . $picture[0]['id'] . '"?>"/>';
-
+        if (isset($_SESSION['username'])) : ?>
+            <input id="userId" type="hidden" value="<?php echo $_SESSION['user_id'];?>"/>
+            <input id="pictureId" type="hidden" value="<?php echo $picture[0]['id']; ?>"/>
+        <?php endif ?>
+        <?php
             if (!$this->hasVoted) {
                 echo '<input id="like" class="btn btn-info pull-center"  type="submit" value="Like"/>';
             } else {
-                echo '<input id="unlike" class="btn btn-info pull-center"  type="submit" value="Unlike"/>';
+                echo '<input id="unlike" class="btn btn-info pull-center"  type="submit" value="unlike"/>';
             }
-        }
         ?>
 
     </div>

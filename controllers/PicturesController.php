@@ -25,6 +25,28 @@ class PicturesController extends MainController
         include_once $this->layout;
     }
 
+    public function id($pictureId) {
+        if ($this->isPost) {
+            $user_id = $_SESSION['user_id'];
+            $comment = $_POST['comment'];
+            if (!empty($comment)) {
+                $element = array('picture_id' => $pictureId, 'user_id' => $user_id,
+                    'comment' => $comment);
+                $this->picturesModel->postPictureComment($element);
+                $this->addInfoMessage('Post added successfully!');
+            } else {
+                $this->addErrorMessage('Couldn not add the comment. Please try again.');
+            }
+        }
+
+        $picture = $this->picturesModel->get($pictureId);
+        $comments = $this->picturesModel->getPicturesComments($pictureId);
+
+        $this->template = ROOT_DIR . '/views/pictures/id.php';
+
+        include_once $this->layout;
+    }
+
     public function all()
     {
         $this->template = ROOT_DIR . '/views/pictures/all.php';
@@ -59,6 +81,15 @@ class PicturesController extends MainController
 
     public function album($albumId) {
         $pictures = $this->picturesModel->getByAlbum($albumId);
+        $pictureComments = array();
+
+        foreach ($pictures as $p) {
+            $comments = $this->picturesModel->getPicturesComments($p['id']);
+            if (!empty($comments)) {
+                $pictureComments[$comments[0]['id']] = $comments;
+            }
+        }
+
         $this->template = ROOT_DIR . '/views/pictures/album.php';
 
         include_once $this->layout;

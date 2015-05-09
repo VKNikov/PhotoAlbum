@@ -74,7 +74,8 @@ class MainModel
         $keys = implode(',', $keys);
         $values = implode(',', $values);
 
-        $query = "INSERT INTO {$this->entity}($keys) VALUES($values)";
+        $query = "INSERT INTO {$this->entity} ($keys) VALUES($values)";
+
         $this->db->query($query);
 
         return $this->db->affected_rows;

@@ -14,6 +14,11 @@
 
 $(function () {
     'use strict';
+    $("a").on('click', function(event) {
+        //event.preventDefault();
+        var id = this.id;
+        window.location.href = "/photoalbum/pictures/id/" + id;
+    });
 
     $('#borderless-checkbox').on('change', function () {
         var borderless = $(this).is(':checked');
@@ -30,6 +35,32 @@ $(function () {
         blueimp.Gallery($('#links a'), $('#blueimp-gallery').data());
     });
 
+    $(function () {
+        $("#postComment").click(function () {
+            $(".error").hide();
+            var hasError = false;
+            var comment = $("#comment").val();
+            if (comment == '') {
+                $("#comment").after('<span class="error">You cannot post an empty comment!</span>');
+                hasError = true;
+            if (hasError == true) {
+                return false;
+            }
+            }
+        });
+    });
+
+    //$("a").on('click', function(event) {
+    //    var id = event.target.id;
+    //    $.ajax({
+    //        url: 'photoalbum/pictures/id' + id,
+    //        method: 'GET'
+    //    }).success((function(data) {
+    //        $('#comments').html(data);
+    //    }))
+    // });
+
+
     //document.getElementById('links').onclick = function (event) {
     //    event = event || window.event;
     //    var target = event.target || event.srcElement,
@@ -38,5 +69,4 @@ $(function () {
     //        links = this.getElementsByTagName('a');
     //    blueimp.Gallery(links, options);
     //};
-
 });

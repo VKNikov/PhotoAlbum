@@ -39,7 +39,7 @@
     <div id="links">
         <?php
         foreach ($pictures as $p) {
-            echo '<a href="/photoalbum/user_images/' . $_SESSION['user_id'] . '/' . $p['pic_filename'] .
+            echo '<a id="'. $p['id'] . '" href="/photoalbum/user_images/' . $_SESSION['user_id'] . '/' . $p['pic_filename'] .
                 '" title="' . $p['description'] . '" data-gallery=""> <img src="/photoalbum/user_images/' . $_SESSION['user_id'] . '/' .
                 'thumb_' . $p['pic_filename'] . '" title="' . $p['description'] . '"/></a>';
         }
@@ -78,11 +78,25 @@
                                 <i class="glyphicon glyphicon-chevron-right"></i>
                             </button>
                         </div>
-                        <div>
-                            <?php
-
-                            ?>
-                        </div>
+<!--                        <div>-->
+<!--                            <div>-->
+<!--                                <button type="button" class="btn">-->
+<!--                                    Show Comments-->
+<!--                                    <i class="glyphicon glyphicon-chevron"></i>-->
+<!--                                </button>-->
+<!---->
+<!--                                <button type="button" class="btn">-->
+<!--                                    Show Comments-->
+<!--                                    <i class="glyphicon glyphicon-chevron"></i>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                            <div id="comments"></div>-->
+<!--                            --><?php
+//                            if (!empty($picturesComments)) {
+//                                echo '<div> </div>>';
+//                            }
+//                            ?>
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

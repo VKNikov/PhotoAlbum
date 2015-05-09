@@ -76,8 +76,8 @@ class UserController extends MainController
 
     public function logout()
     {
-        $_SESSION['username'] = '';
-        $_SESSION['user_id'] = '';
+        unset($_SESSION['username']);
+        unset($_SESSION['user_id']);
 
         $this->redirect('main');
     }

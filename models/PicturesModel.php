@@ -50,8 +50,39 @@ class PicturesModel extends MainModel
         }
     }
 
+    public function postPictureComment($element) {
+        $keys = array_keys($element);
+        $values = array();
+
+        foreach ($element as $key => $value) {
+            $values[] = "'" . $this->db->real_escape_string($value) . "'";
+        }
+
+        $keys = implode(',', $keys);
+        $values = implode(',', $values);
+
+        $query = "INSERT INTO pictures_comments ($keys) VALUES($values)";
+
+        $this->db->query($query);
+
+        return $this->db->affected_rows;
+    }
+
     public function getByAlbum($albumId) {
         return $this->find(array('columns' => 'id, description, pic_filename', 'where' => 'album_id = ' . $albumId));
+    }
+
+    public function getPicturesComments($picture_id) {
+        $comments = $this->find(array('entity' => 'pictures_comments', 'columns' => 'id, picture_id, user_id ,comment, created_on',
+            'where' => 'picture_id = ' . $picture_id, 'limit' => ''));
+
+        foreach ($comments as $key => $value) {
+            $user = $this->find((array('entity' => 'users', 'columns' => 'username',
+                'where' => 'id = ' . $value['user_id'])));
+            $comments[$key]['username'] = $user[0]['username'];
+        }
+
+        return $comments;
     }
 
     public function createThumbnail($source, $thumbnailWidth = 100) {

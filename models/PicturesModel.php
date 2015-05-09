@@ -51,7 +51,7 @@ class PicturesModel extends MainModel
     }
 
     public function getByAlbum($albumId) {
-        return $this->find(array('columns' => 'id, pic_filename', 'where' => 'album_id = ' . $albumId));
+        return $this->find(array('columns' => 'id, description, pic_filename', 'where' => 'album_id = ' . $albumId));
     }
 
     public function createThumbnail($source, $thumbnailWidth = 100) {

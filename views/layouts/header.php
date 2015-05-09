@@ -5,8 +5,11 @@
     <title>Photo Album</title>
     <link rel="stylesheet" href="/photoalbum/styles/styles.css" type="text/css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="/photoalbum/libs/blueimp/css/bootstrap-image-gallery.min.css">
+
+
 </head>
 <body>
 <header>

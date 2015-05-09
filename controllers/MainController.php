@@ -10,6 +10,7 @@
 
 class MainController
 {
+    protected $hasVoted = false;
     protected $viewLocation;
     protected $layout;
     protected $template;

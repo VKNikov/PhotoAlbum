@@ -85,6 +85,17 @@ class PicturesModel extends MainModel
         return $comments;
     }
 
+    public function checkUserVote($userId, $pictureId) {
+        $result = $this->find(array('entity' => 'users_pictures_votes',
+            'where' => 'user_id = ' . $userId . ' and ' . 'picture_id = ' . $pictureId));
+
+        if (!empty($result)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function createThumbnail($source, $thumbnailWidth = 100) {
         $filePath = dirname($source);
         $filename = 'thumb_' . basename($source);

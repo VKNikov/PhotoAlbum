@@ -39,6 +39,8 @@ class PicturesController extends MainController
             }
         }
 
+        $this->hasVoted = $this->picturesModel->checkUserVote($_SESSION['user_id'], $pictureId);
+
         $picture = $this->picturesModel->get($pictureId);
         $comments = $this->picturesModel->getPicturesComments($pictureId);
 

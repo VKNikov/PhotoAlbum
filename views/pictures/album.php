@@ -42,8 +42,17 @@
                 <?php endif ?>
 
             </div>
-        <?php endif?>
+            <?php if ($album[0]['user_id'] == $_SESSION['user_id']): ?>
+            <div class="form-group">
 
+                <a href="/photoalbum/pictures/add" class="btn btn-primary btn-lg">Add New Picture</a>
+            </div>
+            <?php endif ?>
+        <?php endif?>
+        <div class="form-group">
+
+            <input id="downloadAlbum" class="btn btn-primary btn-lg" value="Download Album"/a>
+        </div>
     </form>
 
     <br/>

@@ -17,6 +17,7 @@ class AlbumsModel extends MainModel
     }
 
     public function getAlbumsWithLimit($limit = 10) {
-        return $this->find(array('limit' => $limit, 'where' => 'is_public = ' . 1));
+        return $this->find(array('limit' => $limit, 'where' => 'is_public = ' . 1 .
+            ' and is_deleted = 0'));
     }
 }

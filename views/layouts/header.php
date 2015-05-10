@@ -14,7 +14,7 @@
 <body>
 <header>
     <?php if (!empty($_SESSION['username'])) {
-        echo "<h2>Hi, {$_SESSION['username']}!, Welcome back to your Photo Album</h2>";
+        echo '<h2>Hi, ' . htmlspecialchars($_SESSION['username']) . '! Welcome back to your Photo Album</h2>';
     } else {
         echo "<h2>Welcome to Vassil's Photo Album website</h2>";
     } ?>
@@ -26,7 +26,7 @@
             <div class="navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-center">
 
-                    <li><a href="/photoalbum/albums/">Albums</a></li>
+                    <li><a href="/photoalbum/albums/">Public Albums</a></li>
                     <li><a href="/photoalbum/pictures/">Pictures</a></li>
                     <?php
                     if (!empty($_SESSION['username'])) {

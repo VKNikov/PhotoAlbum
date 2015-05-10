@@ -46,11 +46,11 @@ class MainModel
 
     public function getAll()
     {
-        return $this->find(array('limit' => ''));
+        return $this->find(array('where' => 'is_deleted = 0', 'limit' => ''));
     }
 
     public function getAlbumsByUser($userId) {
-        return $this->find(array('where' => 'user_id = ' . $userId, 'columns' => 'id, name', 'entity' => 'albums'));
+        return $this->find(array('where' => 'user_id = ' . $userId . ' and is_deleted = 0', 'columns' => 'id, name', 'entity' => 'albums'));
     }
 
     public function update($element)
@@ -75,6 +75,22 @@ class MainModel
         $this->db->query($query);
 
         return $this->db->affected_rows;
+    }
+
+    public function loginFind($args = array())
+    {
+        //extract( $args );
+
+        $query = "SELECT {$args['columns']} FROM users WHERE username = ?";
+
+
+        $statement = $this->db->prepare($query);
+        $statement->bind_param('s', $args['username']);
+        $statement->execute();
+        $dbResult = $statement->result_metadata();
+        $results = $this->retrieveData($dbResult);
+
+        return $results;
     }
 
     public function find($args = array())

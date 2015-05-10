@@ -20,6 +20,18 @@ class PicturesController extends MainController
 
     public function index()
     {
+        $pictures = $this->picturesModel->getAllPicturesWithVotes();
+        $pictureComments = array();
+
+        if (!empty($pictures)) {
+            foreach ($pictures as $p) {
+                $comments = $this->picturesModel->getPicturesComments($p['id']);
+                if (!empty($comments)) {
+                    $pictureComments[$comments[0]['id']] = $comments;
+                }
+            }
+        }
+
         $this->template = ROOT_DIR . '/views/pictures/index.php';
 
         include_once $this->layout;
@@ -41,6 +53,7 @@ class PicturesController extends MainController
 
         if ($this->authorization->isLoggedIn()) {
             $this->hasVoted = $this->picturesModel->checkUserPictureVote($_SESSION['user_id'], $pictureId);
+            $isOwnPicture = $this->picturesModel->checkPictureOwner($_SESSION['user_id'], $pictureId);
         }
 
 
@@ -98,6 +111,7 @@ class PicturesController extends MainController
             }
         }
 
+        $album = $this->picturesModel->getAlbum($albumId);
         $pictures = $this->picturesModel->getByAlbum($albumId);
         $pictureComments = array();
 

@@ -5,6 +5,23 @@
 $(function () {
     'use strict';
 
+    $(".anchorButton").on('click', function(event) {
+        event.preventDefault();
+        var id = this.id;
+        window.location.href = "/photoalbum/pictures/id/" + id;
+    });
+
+    $("#deleteButton").on('click', function(event) {
+        var pictureId = $('#deletePicture').val();
+        var userId = $('#userId').val();
+        var filename = $('#filename').val();
+        var item = {'pictureId' : pictureId, 'user_id': userId, 'filename': filename};
+
+        $.post('/photoalbum/ajax.php', {deletePicture: item }, function(data) {
+            //location.reload();
+        });
+    });
+
     $('#like').click(function() {
         var userId = $('#userId').val();
         var pictureId = $('#pictureId').val();

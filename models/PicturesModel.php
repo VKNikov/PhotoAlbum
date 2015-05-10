@@ -16,7 +16,8 @@ class PicturesModel extends MainModel
         parent::__construct(array('entity' => 'pictures'));
     }
 
-    public function uploadPicture($element) {
+    public function uploadPicture($element)
+    {
         if ($_FILES['file']['tmp_name']) {
             if ($_FILES['file']['size'] > 2097152) {
                 return array('error' => 'The file you are trying to upload is larger than 2mb in size!');
@@ -30,7 +31,9 @@ class PicturesModel extends MainModel
             $filePath = ROOT_DIR . 'user_images/' . $_SESSION['user_id'] . '/' .
                 $element['album_id'] . '/';
             if (!is_dir($filePath)) {
-                mkdir($filePath);
+                if (!mkdir($filePath, 0777, true)) {
+                    die('Failed to create folders...');
+                }
             }
 
             $filename = $_FILES['file']['name'];
@@ -51,7 +54,18 @@ class PicturesModel extends MainModel
         }
     }
 
-    public function postPictureComment($element) {
+    public function checkPictureOwner($userId, $pictureId)
+    {
+        $picture = $this->get($pictureId);
+        if ($picture[0]['user_id'] == $userId) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function postPictureComment($element)
+    {
         $keys = array_keys($element);
         $values = array();
 
@@ -69,7 +83,8 @@ class PicturesModel extends MainModel
         return $this->db->affected_rows;
     }
 
-    public function postAlbumComment($element) {
+    public function postAlbumComment($element)
+    {
         $keys = array_keys($element);
         $values = array();
 
@@ -87,11 +102,32 @@ class PicturesModel extends MainModel
         return $this->db->affected_rows;
     }
 
-    public function getByAlbum($albumId) {
-        return $this->find(array('columns' => 'id, description, pic_filename, album_id, user_id', 'where' => 'album_id = ' . $albumId));
+    public function getByAlbum($albumId)
+    {
+        return $this->find(array('columns' => 'id, description, pic_filename, album_id, user_id',
+            'where' => 'album_id = ' . $albumId . ' and is_deleted = 0'));
     }
 
-    public function getPicturesComments($picture_id) {
+    public function getAlbum($albumId)
+    {
+        return $this->find(array('entity' => 'albums', 'columns' => 'id, user_id', 'where' => ' id = ' . $albumId));
+    }
+
+    public function getAllPicturesWithVotes()
+    {
+
+        $dbResult = $this->db->query(
+            "SELECT pic.id, pic.description, pic.pic_filename, pic.album_id, pic.user_id FROM {$this->entity} as pic " .
+            "JOIN users_pictures_votes as picVoted ON pic.id = picVoted.picture_id " .
+            "WHERE pic.is_deleted = 0");
+
+        $result = $this->retrieveData($dbResult);
+
+        return $result;
+    }
+
+    public function getPicturesComments($picture_id)
+    {
         $comments = $this->find(array('entity' => 'pictures_comments', 'columns' => 'id, picture_id, user_id ,comment, created_on',
             'where' => 'picture_id = ' . $picture_id, 'limit' => ''));
 
@@ -104,7 +140,8 @@ class PicturesModel extends MainModel
         return $comments;
     }
 
-    public function getAlbumsComments($albumId) {
+    public function getAlbumsComments($albumId)
+    {
         $comments = $this->find(array('entity' => 'albums_comments', 'columns' => 'id, album_id, user_id ,comment, created_on',
             'where' => 'album_id = ' . $albumId, 'limit' => ''));
 
@@ -117,7 +154,8 @@ class PicturesModel extends MainModel
         return $comments;
     }
 
-    public function checkUserPictureVote($userId, $pictureId) {
+    public function checkUserPictureVote($userId, $pictureId)
+    {
         $result = $this->find(array('entity' => 'users_pictures_votes',
             'where' => 'user_id = ' . $userId . ' and ' . 'picture_id = ' . $pictureId));
 
@@ -128,7 +166,8 @@ class PicturesModel extends MainModel
         return false;
     }
 
-    public function checkUserAlbumVote($userId, $albumId) {
+    public function checkUserAlbumVote($userId, $albumId)
+    {
         $result = $this->find(array('entity' => 'users_albums_votes',
             'where' => 'user_id = ' . $userId . ' and ' . 'album_id = ' . $albumId));
 
@@ -139,7 +178,8 @@ class PicturesModel extends MainModel
         return false;
     }
 
-    public function createThumbnail($source, $thumbnailWidth = 100) {
+    public function createThumbnail($source, $thumbnailWidth = 100)
+    {
         $filePath = dirname($source);
         $filename = 'thumb_' . basename($source);
 
@@ -149,7 +189,7 @@ class PicturesModel extends MainModel
             imagegif($temp_image, $filePath . '/' . $filename);
         }
 
-        if(exif_imagetype($source) == IMAGETYPE_JPEG) {
+        if (exif_imagetype($source) == IMAGETYPE_JPEG) {
             $img = imagecreatefromjpeg($source);
             $temp_image = $this->buildGenericThumb($img, $thumbnailWidth);
             imagejpeg($temp_image, $filePath . '/' . $filename);
@@ -162,7 +202,8 @@ class PicturesModel extends MainModel
         }
     }
 
-    public function buildGenericThumb($img, $thumbnailWidth) {
+    public function buildGenericThumb($img, $thumbnailWidth)
+    {
         $currentWidth = imagesx($img);
         $currentHeight = imagesx($img);
 

@@ -17,7 +17,7 @@ define( 'ROOT_PATH', basename( dirname( __FILE__ ) ) . '/' );
 $request = $_SERVER['REQUEST_URI'];
 $requestHome = '/' . ROOT_PATH;
 
-$controller = 'main';
+$controller = 'albums';
 $action = 'index';
 $params = array();
 

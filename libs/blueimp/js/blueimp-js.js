@@ -14,11 +14,6 @@
 
 $(function () {
     'use strict';
-    $(".anchorButton").on('click', function(event) {
-        //event.preventDefault();
-        var id = this.id;
-        window.location.href = "/photoalbum/pictures/id/" + id;
-    });
 
     $('#borderless-checkbox').on('change', function () {
         var borderless = $(this).is(':checked');

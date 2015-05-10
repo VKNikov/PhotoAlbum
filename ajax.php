@@ -8,6 +8,7 @@
 
 include_once('config/config.php');
 include_once 'libs/Database.php';
+define( 'ROOT_DIR', dirname( __FILE__ ) . '/' );
 
 $dbEntity = \Libs\Database::getInstance();
 $db = $dbEntity->getDb();
@@ -45,7 +46,45 @@ if (isset($_POST['unlikeAlbum'])) {
     return deleteFromDb('users_albums_votes', $db, $userId, $albumId);
 }
 
-function insertIntoDb($table, $db, $userId, $entityId) {
+if (isset($_POST['deletePicture'])) {
+    $element = $_POST['deletePicture'];
+    $pictureId = (int)$element['pictureId'];
+
+    $query = "SELECT album_id FROM pictures WHERE id = {$pictureId}";
+    $query = $db->escape_string($query);
+    $statement= $db->query($query);
+    $albumId =  $statement->fetch_all(MYSQLI_ASSOC);
+
+    $picFilename = $element['filename'];
+    $userId = (int)$element['user_id'];
+
+    $filePath = ROOT_DIR . 'user_images/' . $userId . '/' .
+        $albumId[0]['album_id'] . '/';
+
+    $thumbFile = 'thumb_' . $picFilename;
+    $isDeletedThumb = unlink($filePath . $thumbFile);
+    $isDeletedFile = unlink($filePath . $picFilename);
+    $result = deletePicture($db, $pictureId);
+    if ($result) {
+        header('Location: photoalbum/albums');
+        die;
+    } else {
+
+    }
+}
+
+function deletePicture($db, $pictureId)
+{
+    $statement = $db->prepare(
+        "DELETE FROM pictures WHERE id = ?");
+    $statement->bind_param("i", $pictureId);
+    $statement->execute();
+
+    return $statement->affected_rows > 0;
+}
+
+function insertIntoDb($table, $db, $userId, $entityId)
+{
     if ($table == 'users_pictures_votes') {
         $column = 'picture_id';
     } else {
@@ -60,7 +99,8 @@ function insertIntoDb($table, $db, $userId, $entityId) {
     return $statement->affected_rows > 0;
 }
 
-function deleteFromDb($table, $db, $userId, $entityId) {
+function deleteFromDb($table, $db, $userId, $entityId)
+{
     if ($table == 'users_pictures_votes') {
         $column = 'picture_id';
     } else {

@@ -11,11 +11,21 @@ echo '<img class="align-picture" src="/photoalbum/user_images/' .$picture[0]['us
 <div>
     <div class="inner">
         <?php
-        if (!$this->hasVoted) {
-            echo '<input id="like" class="btn btn-info pull-center"  type="submit" value="Like"/>';
-        } else {
-            echo '<input id="unlike" class="btn btn-info pull-center"  type="submit" value="unlike"/>';
+        if (isset($_SESSION['username'])) {
+            if (!$this->hasVoted) {
+                echo '<input id="like" class="btn btn-info pull-left"  type="submit" value="Like"/>';
+            } else {
+                echo '<input id="unlike" class="btn btn-info pull-left"  type="submit" value="unlike"/>';
+            }
+
+            if ($isOwnPicture) {
+                echo '<input id="filename" type="hidden" value="' . $picture[0]['pic_filename'] . '"/>';
+                echo '<input id="deletePicture" type="hidden" value="' . $picture[0]['id'] . '"/>';
+                echo '<input id="deleteButton" class="btn btn-info pull-right"  type="submit" value="Delete"/>';
+            }
         }
+
+
         ?>
     </div>
 
@@ -25,6 +35,7 @@ echo '<img class="align-picture" src="/photoalbum/user_images/' .$picture[0]['us
         if (isset($_SESSION['username'])) : ?>
             <input id="userId" type="hidden" value="<?php echo $_SESSION['user_id'];?>"/>
             <input id="pictureId" type="hidden" value="<?php echo $picture[0]['id']; ?>"/>
+            <input id="pictureName" type="hidden" value="<?php echo $picture[0]['pic_filename']; ?>"/>
         <?php endif ?>
 
 

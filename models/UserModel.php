@@ -18,6 +18,9 @@ class UserModel extends MainModel
 
     public function login($username, $password)
     {
+//        $result = $this->loginFind(array('columns' => 'id, username, password',
+//            'username' => "'" . $username . "'"));
+
         $result = $this->find(array('columns' => 'id, username, password',
             'where' => "username = " . "'" .$username . "'"));
 

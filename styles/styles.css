@@ -24,9 +24,12 @@ footer {
 }
 
 .inner {
+    mar
     display: block;
     max-width: 500px;
+    min-height: 50px;
     margin: 0 auto;
+    margin-top: 10px;
 }
 
 /* Rewrite the bootstrap classes so the navigation menu isn't positioned to the left. */

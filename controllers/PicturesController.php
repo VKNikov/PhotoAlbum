@@ -132,4 +132,6 @@ class PicturesController extends MainController
 
         include_once $this->layout;
     }
+
+
 }

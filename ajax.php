@@ -114,3 +114,25 @@ function deleteFromDb($table, $db, $userId, $entityId)
 
     return $statement->affected_rows > 0;
 }
+
+function downloadAlbum($albumId)
+{
+    $pictures = $this->getAll($albumId);
+
+    $zipname = 'pictures.zip';
+    $zip = new ZipArchive;
+    $zip->open($zipname, ZipArchive::CREATE);
+    foreach ($pictures as $file) {
+        $zip->addFile($file);
+    }
+    $zip->close();
+
+    header('Content-Type: application/zip');
+    header("Content-Disposition: attachment; filename='pictures.zip'");
+    header('Content-Length: ' . filesize($zipname));
+    header("Location: pictures.zip");
+
+    $this->template = ROOT_DIR . '/views/pictures/album.php';
+
+    include_once $this->layout;
+}

@@ -117,9 +117,10 @@ class PicturesModel extends MainModel
     {
 
         $dbResult = $this->db->query(
-            "SELECT pic.id, pic.description, pic.pic_filename, pic.album_id, pic.user_id FROM {$this->entity} as pic " .
-            "JOIN users_pictures_votes as picVoted ON pic.id = picVoted.picture_id " .
-            "WHERE pic.is_deleted = 0");
+            "SELECT DISTINCT p.id, p.description, p.pic_filename, p.album_id, p.user_id FROM " .
+                "(SELECT pic.id, pic.description, pic.pic_filename, pic.album_id, pic.user_id FROM {$this->entity} as pic " .
+                "JOIN users_pictures_votes as picVoted ON pic.id = picVoted.picture_id " .
+                "WHERE pic.is_deleted = 0) as p");
 
         $result = $this->retrieveData($dbResult);
 

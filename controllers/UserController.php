@@ -29,6 +29,11 @@ class UserController extends MainController
     {
         if ($this->isPost) {
             $username = $_POST['username'];
+            if (!$this->isValidStr($username))  {
+                $this->addInfoMessage('Username contains invalid characters!');
+                $this->redirect('user', 'register');
+            }
+
             $email = $_POST['email'];
             $password = $_POST['password'];
             $confirmPass = $_POST['confirmPass'];
@@ -53,6 +58,11 @@ class UserController extends MainController
     {
         if ($this->isPost) {
             $username = $_POST['username'];
+            if (!$this->isValidStr($username))  {
+                $this->addInfoMessage('Username contains invalid characters!');
+                $this->redirect('user', 'login');
+            }
+
             $password = $_POST['password'];
 
             if (!is_null($username) && !is_null($password)) {
@@ -80,5 +90,9 @@ class UserController extends MainController
         unset($_SESSION['user_id']);
 
         $this->redirect('albums', 'index');
+    }
+
+    private function isValidStr($str) {
+        return !preg_match('/[^A-Za-z0-9.#\\-$]/', $str);
     }
 }

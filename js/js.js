@@ -11,6 +11,15 @@ $(function () {
         window.location.href = "/photoalbum/pictures/id/" + id;
     });
 
+    $("downloadAlbum").on('click', function(event) {
+        var id = this.id;
+
+        $.post('/photoalbum/ajax.php', {download: item }, function(data) {
+            //location.reload();
+            window.location.href = "/photoalbum/index";
+        });
+    });
+
     $("#deleteButton").on('click', function(event) {
         var pictureId = $('#deletePicture').val();
         var userId = $('#userId').val();
@@ -19,6 +28,7 @@ $(function () {
 
         $.post('/photoalbum/ajax.php', {deletePicture: item }, function(data) {
             //location.reload();
+            window.location.href = "/photoalbum/index";
         });
     });
 

@@ -30,7 +30,7 @@ class UserController extends MainController
         if ($this->isPost) {
             $username = $_POST['username'];
             if (!$this->isValidStr($username))  {
-                $this->addInfoMessage('Username contains invalid characters!');
+                $this->addErrorMessage('Username contains invalid characters!');
                 $this->redirect('user', 'register');
             }
 
@@ -38,7 +38,14 @@ class UserController extends MainController
             $password = $_POST['password'];
             $confirmPass = $_POST['confirmPass'];
             if ($password !== $confirmPass) {
-                exit('Error: Sorry, passwords did not match');
+                $this->addErrorMessage("Passwords mismatch. Please reenter your info.");
+                $this->redirect('user', 'register');
+            }
+
+            $captcha = $_POST['captcha'];
+            if ($captcha != $_SESSION['vercode']) {
+                $this->addErrorMessage("Captcha code was wrong. Please try again.");
+                $this->redirect('user', 'register');
             }
 
             if ($this->userModel->register($username, $email, $password)) {
@@ -59,7 +66,7 @@ class UserController extends MainController
         if ($this->isPost) {
             $username = $_POST['username'];
             if (!$this->isValidStr($username))  {
-                $this->addInfoMessage('Username contains invalid characters!');
+                $this->addErrorMessage('Username contains invalid characters!');
                 $this->redirect('user', 'login');
             }
 
@@ -74,7 +81,7 @@ class UserController extends MainController
                 $this->addErrorMessage('Invalid username or password. Please try again.');
 
             } else {
-                $this->addInfoMessage('Username or password cannot be empty!');
+                $this->addErrorMessage('Username or password cannot be empty!');
                 $this->redirect('user', 'login');
             }
         }

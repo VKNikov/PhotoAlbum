@@ -49,6 +49,16 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="captcha">Captcha</label>
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter Code" id="captcha" name="captcha" class="inputcaptcha" required="required">
+                        <img src="/photoalbum/libs/captcha/captcha.php" class="imgcaptcha" alt="captcha"  />
+                        <img src="/photoalbum/libs/captcha/images/refresh.png" alt="reload" class="refresh" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+
+                </div>
 
                 <a href="/photoalbum/user/login" class="btn btn-info pull-left">Login Instead</a>
                 <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
@@ -57,27 +67,3 @@
         </form>
     </div>
 </div>
-
-<script>
-    jQuery(function () {
-        $("#submit").click(function () {
-            $(".error").hide();
-            var hasError = false;
-            var passwordVal = $("#password").val();
-            var checkVal = $("#confirmPass").val();
-            if (passwordVal == '') {
-                $("#password").after('<span class="error">Please enter a password.</span>');
-                hasError = true;
-            } else if (checkVal == '') {
-                $("#confirmPass").after('<span class="error">Please re-enter your password.</span>');
-                hasError = true;
-            } else if (passwordVal != checkVal) {
-                $("#confirmPass").after('<span class="error">Passwords do not match.</span>');
-                hasError = true;
-            }
-            if (hasError == true) {
-                return false;
-            }
-        });
-    });
-</script>

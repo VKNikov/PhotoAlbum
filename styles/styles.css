@@ -31,6 +31,10 @@ footer {
     margin-top: 10px;
 }
 
+.error {
+    background-color: red;
+}
+
 /* Rewrite the bootstrap classes so the navigation menu isn't positioned to the left. */
 @media (min-width: 768px) {
     .navbar .navbar-nav {

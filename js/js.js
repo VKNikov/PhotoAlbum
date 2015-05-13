@@ -94,7 +94,16 @@ $(function () {
                 var hasError = false;
                 var passwordVal = $("#password").val();
                 var checkVal = $("#confirmPass").val();
-                if (passwordVal == '') {
+                if (passwordVal.length < 6) {
+                    $("#password").after('<span class="error">Password too short! Password must be at least 6 characters long!</span>');
+                    hasError = true;
+                } else if(!(/[0-9]+/.test(passwordVal))) {
+                    $("#password").after('<span class="error">Password must include at least one number!</span>');
+                    hasError = true;
+                } else if(!(/[a-zA-Z]+/.test(passwordVal))) {
+                    $("#password").after('<span class="error">Password must include at least one letter!</span>');
+                    hasError = true;
+                } else if (passwordVal == '') {
                     $("#password").after('<span class="error">Please enter a password.</span>');
                     hasError = true;
                 } else if (checkVal == '') {

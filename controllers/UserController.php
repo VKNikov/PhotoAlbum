@@ -29,7 +29,7 @@ class UserController extends MainController
     {
         if ($this->isPost) {
             $username = $_POST['username'];
-            if (!$this->isValidStr($username))  {
+            if (!$this->isValidStr($username)) {
                 $this->addErrorMessage('Username contains invalid characters!');
                 $this->redirect('user', 'register');
             }
@@ -48,6 +48,8 @@ class UserController extends MainController
                 $this->redirect('user', 'register');
             }
 
+            $this->checkPassword($password);
+
             if ($this->userModel->register($username, $email, $password)) {
                 $this->addInfoMessage("Registration successful. You can now logon in.");
                 $this->redirect('main');
@@ -65,7 +67,7 @@ class UserController extends MainController
     {
         if ($this->isPost) {
             $username = $_POST['username'];
-            if (!$this->isValidStr($username))  {
+            if (!$this->isValidStr($username)) {
                 $this->addErrorMessage('Username contains invalid characters!');
                 $this->redirect('user', 'login');
             }
@@ -99,7 +101,27 @@ class UserController extends MainController
         $this->redirect('albums', 'index');
     }
 
-    private function isValidStr($str) {
+    private function isValidStr($str)
+    {
         return !preg_match('/[^A-Za-z0-9.#\\-$]/', $str);
+    }
+
+    private function checkPassword($pwd)
+    {
+
+        if (strlen($pwd) < 6) {
+            $this->addErrorMessage('Password too short! Password must be at least 6 characters long!');
+            $this->redirect('user', 'register');
+        }
+
+        if (!preg_match("#[0-9]+#", $pwd)) {
+            $this->addErrorMessage('Password must include at least one number!');
+            $this->redirect('user', 'register');
+        }
+
+        if (!preg_match("#[a-zA-Z]+#", $pwd)) {
+            $this->addErrorMessage('Password must include at least one letter!');
+            $this->redirect('user', 'register');
+        }
     }
 }

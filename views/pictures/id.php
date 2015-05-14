@@ -66,6 +66,7 @@ echo '<img class="align-picture" src="/photoalbum/user_images/' .$picture[0]['us
                     <div class="form-group">
                         <input class="btn btn-default" type="submit" value="Add"/>
                     </div>
+                    <input type="hidden" name="secToken" value="<?php echo $_SESSION['secToken'];?>"/>
                 </form>
             <?php endif; ?>
 

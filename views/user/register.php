@@ -10,6 +10,7 @@
 <div class="container">
     <div class="row">
         <form role="form" method="post">
+            <input type="hidden" name="secToken" value="<?php echo $_SESSION['secToken'];?>"/>
             <div class="inner">
                 <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required
                         Field</strong></div>

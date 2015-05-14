@@ -60,7 +60,6 @@ footer {
 
 .inputcaptcha{
     width: 150px;
-    float: left;
     background: none repeat scroll 0 0 #F5F5F5;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
@@ -94,11 +93,7 @@ footer {
 }
 
 .anchorButton {
-
-}
-
-textarea {
-    resize: none;
+/*Do not delete! Used in js function!*/
 }
 
 .detailBox {
@@ -106,10 +101,12 @@ textarea {
     border:1px solid #bbb;
     margin: 0 auto;
 }
+
 .titleBox {
     background-color:#fdfdfd;
     padding:10px;
 }
+
 .titleBox label{
     color:#444;
     margin:0;

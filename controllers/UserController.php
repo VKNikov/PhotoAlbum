@@ -27,7 +27,17 @@ class UserController extends MainController
 
     public function register()
     {
+        if (!$this->isPost) {
+            $_SESSION['secToken'] = hash('sha256', microtime());
+        }
+
         if ($this->isPost) {
+            $securityToken = $_SESSION['secToken'];
+            if (!isset($_SESSION['secToken']) || $securityToken != $_SESSION['secToken']) {
+                $this->addErrorMessage('Something went terribly wrong! Please try again.');
+                $this->redirect('user', 'register');
+            }
+
             $username = $_POST['username'];
             if (!$this->isValidStr($username)) {
                 $this->addErrorMessage('Username contains invalid characters!');
@@ -65,7 +75,17 @@ class UserController extends MainController
 
     public function login()
     {
+        if (!$this->isPost) {
+            $_SESSION['secToken'] = hash('sha256', microtime());
+        }
+
         if ($this->isPost) {
+            $securityToken = $_SESSION['secToken'];
+            if (!isset($_SESSION['secToken']) || $securityToken != $_SESSION['secToken']) {
+                $this->addErrorMessage('Something went terribly wrong! Please try again.');
+                $this->redirect('user', 'login');
+            }
+
             $username = $_POST['username'];
             if (!$this->isValidStr($username)) {
                 $this->addErrorMessage('Username contains invalid characters!');

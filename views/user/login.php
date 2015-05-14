@@ -10,6 +10,7 @@
 <div class="container">
     <div class="row">
         <form role="form" method="post">
+            <input type="hidden" name="secToken" value="<?php echo $_SESSION['secToken'];?>"/>
             <div class="inner">
                 <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required
                         Field</strong></div>
@@ -33,7 +34,7 @@
                     </div>
                 </div>
                 <a href="/photoalbum/user/register" class="btn btn-info pull-left">Register Instead</a>
-                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                <input type="submit" name="submit" id="login" value="Submit" class="btn btn-info pull-right">
             </div>
         </form>
     </div>

@@ -37,8 +37,19 @@ class PicturesController extends MainController
         include_once $this->layout;
     }
 
-    public function id($pictureId) {
+    public function id($pictureId)
+    {
+        if (!$this->isPost) {
+            $_SESSION['secToken'] = hash('sha256', microtime());
+        }
+
         if ($this->isPost) {
+            $securityToken = $_SESSION['secToken'];
+            if (!isset($_SESSION['secToken']) || $securityToken != $_SESSION['secToken']) {
+                $this->addErrorMessage('Something went terribly wrong! Please try again.');
+                $this->redirect('pictures', 'id');
+            }
+
             $user_id = $_SESSION['user_id'];
             $comment = $_POST['comment'];
             if (!empty($comment)) {
@@ -97,9 +108,19 @@ class PicturesController extends MainController
         include_once $this->layout;
     }
 
-    public function album($albumId) {
+    public function album($albumId)
+    {
+        if (!$this->isPost) {
+            $_SESSION['secToken'] = hash('sha256', microtime());
+        }
 
         if ($this->isPost) {
+            $securityToken = $_SESSION['secToken'];
+            if (!isset($_SESSION['secToken']) || $securityToken != $_SESSION['secToken']) {
+                $this->addErrorMessage('Something went terribly wrong! Please try again.');
+                $this->redirect('pictures', 'album');
+            }
+
             $user_id = $_SESSION['user_id'];
             $comment = $_POST['comment'];
             if (!empty($comment)) {
